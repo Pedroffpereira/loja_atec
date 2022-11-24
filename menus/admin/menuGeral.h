@@ -26,23 +26,23 @@ void menu_admin(string*** GLOBAL,string** SESSION){
 
     switch (action)
     {
-    case 0:
+        case 0:
 
-        break;
+            break;
 
-    case 1:
+        case 1:
 
-        break;
-    case 2:
+            break;
+        case 2:
 
-        break;
-    case 3:
-    
-        break;
+            break;
+        case 3:
+        
+            break;
 
-    case 4:
-        break;
-    
+        case 4:
+            break;
+        
     }
 
 }

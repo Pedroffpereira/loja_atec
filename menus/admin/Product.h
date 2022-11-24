@@ -12,6 +12,7 @@ void CreateProdutc(string** Products) {
 
 
 void GeralProdutc(string** Products) {
+    int action;
 
     cout << "1 - Produto" << endl;
 
@@ -22,5 +23,10 @@ void GeralProdutc(string** Products) {
     cout << "4 - Outros" << endl;
 
     cout << "0 - Sair" << endl;
+
+    cin >> action;
+
+
+
 
 }
