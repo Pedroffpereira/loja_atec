@@ -6,11 +6,11 @@
 
 using namespace std;
 
-void menu_admin(string*** GLOBAL,string** SESSION){
+void menu_client(string*** GLOBAL,string** SESSION){
 
     int action;
     
-    cout << "1 - Produto" << endl;
+    cout << "1 - Adicionar ao carrinho Produto" << endl;
 
     cout << "2 - Cliente" << endl;
 

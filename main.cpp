@@ -59,9 +59,9 @@ int main() {
     do {
         if(login(SESSION, accounts)){
             if(SESSION[0][2] == "ADMIN"){
-                menu_admin(GLOBAL);
+                menu_admin(GLOBAL, SESSION);
             } else {
-
+                menu_client(GLOBAL, SESSION);
             }
         } else{
             getError(1);
