@@ -25,8 +25,7 @@ bool login(string **SESSION, string** accounts){
 
 
     for (int i = 0; i < getsize(accounts); i++) {
-        
-        if(accounts[i][0] == email && accounts[i][1] == pass){
+        if(accounts[i][1] == email && accounts[i][2] == pass){
             
             growArray(SESSION,accounts[i]);
             return true;

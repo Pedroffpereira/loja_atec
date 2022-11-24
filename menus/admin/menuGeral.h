@@ -1,5 +1,7 @@
 #include<iostream>
 
+#include<clocale>
+
 #include<string>
 
 
@@ -7,6 +9,8 @@
 using namespace std;
 
 void menu_admin(string*** GLOBAL,string** SESSION){
+
+    setlocale(LC_ALL, "Portuguese");
 
     int action;
     
