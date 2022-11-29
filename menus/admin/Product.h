@@ -1,32 +1,13 @@
-#include<string>
+#include <string>
 
-#include<iostream>
+#include <iostream>
+
+
+#include "../../config/ProductsFunctions.h"
+
 
 using namespace std;
 
-void CreateProdutc(string** Products) {
+void CreateProduct(string **Products);
 
-    
-
-}
-
-
-void GeralProdutc(string** Products) {
-    int action;
-
-    cout << "1 - Produto" << endl;
-
-    cout << "2 - Cliente" << endl;
-
-    cout << "3 - Relatórios" << endl;
-
-    cout << "4 - Outros" << endl;
-
-    cout << "0 - Sair" << endl;
-
-    cin >> action;
-
-
-
-
-}
+void GeralProducts(string **Products);

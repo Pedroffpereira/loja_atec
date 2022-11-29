@@ -1,16 +1,4 @@
-
-
-#include<iostream>
-
-#include<string>
-
-#include "./menus/login.h"
-
-#include "./errors.h"
-
-#include "./menus/admin/menuGeral.h"
-using namespace std;
-
+#include "main.h"
 
 int main() {
 
@@ -59,12 +47,12 @@ int main() {
     do {
         if(login(SESSION, accounts)){
             if(SESSION[0][2] == "ADMIN"){
-                menu_admin(GLOBAL, SESSION);
+                menu_admin(GLOBAL);
             } else {
-                menu_client(GLOBAL, SESSION);
+                //menu_client(GLOBAL, SESSION);
             }
         } else{
-            getError(1);
+            getErrors(1);
         }
 
     } while(true);
