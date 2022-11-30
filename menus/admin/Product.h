@@ -5,6 +5,8 @@
 
 #include "../../config/ProductsFunctions.h"
 
+#include "../../control_array/array_function.cpp"
+
 
 using namespace std;
 

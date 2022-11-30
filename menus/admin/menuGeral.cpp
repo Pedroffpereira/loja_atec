@@ -5,7 +5,7 @@
 #ifndef menu_admin_file
 #define menu_admin_file
 void menu_admin(string*** GLOBAL){
-
+	system ("CLS");
     int action;
     
     cout << "1 - Produto" << endl;
@@ -25,14 +25,16 @@ void menu_admin(string*** GLOBAL){
     switch (action)
     {
         case 0:
-            GeralProducts(GLOBAL[1]);
+
+           
+
             break;
 
         case 1:
-
+            GeralProducts(GLOBAL[1]);
             break;
         case 2:
-
+            
             break;
         case 3:
         
