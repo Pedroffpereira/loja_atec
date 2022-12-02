@@ -48,7 +48,7 @@ void GeralProducts(string **Products)
 
     cout << "1 - Adicionar Produto" << endl;
 
-    cout << "2 - Mostra todos os Produtos" << endl;
+    cout << "2 - Mostra todos os Produtos ("  << getsize(Products) << ")" << endl;
 
     cout << "0 - Sair" << endl;
 
@@ -60,7 +60,7 @@ void GeralProducts(string **Products)
             CreateProduct(Products);
             break;
         case 2:
-
+            ShowProducts(Products);
             break;
         case 3:
 
@@ -79,11 +79,13 @@ void GeralProducts(string **Products)
 
 void ShowProducts(string **Products) {
     
-     system ("CLS");
+     system("CLS");
 
-    for (int i = 0; i < getsize(Products); i+2)
-    {
-        cout << Products[i][0]  << " | " << (Products[i+1] == nullptr ? Products[i+1][0]) << endl;
+    for (int i = 0; i < getsize(Products); i+2) {
+
+        string* frist_c = Products[i];
+        string* second_c = (Products[i+1] == nullptr) ? Products[i+1] : nullptr;
+        cout << frist_c << " | " << second_c << endl;
     }
     
     

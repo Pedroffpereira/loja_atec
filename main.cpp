@@ -74,9 +74,11 @@ int main() {
             cout << SESSION[0][1];
             if(SESSION[0][3] == "ADMIN"){
                 menu_admin(GLOBAL);
+            }
+        }
         if(login(SESSION, accounts)){
             if(SESSION[0][3] == "ADMIN"){
-                menu_admin(GLOBAL, SESSION);
+                menu_admin(GLOBAL);
             } else {
                 //menu_client(GLOBAL, SESSION);
             }
