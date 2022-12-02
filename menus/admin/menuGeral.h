@@ -2,10 +2,8 @@
 
 #include <string>
 
-#include"./Product.cpp"
-
 using namespace std;
 
-
+#include"./Product.cpp"
 
 void menu_admin(string*** GLOBAL);
