@@ -48,9 +48,7 @@ void GeralProducts(string **Products)
 
     cout << "1 - Adicionar Produto" << endl;
 
-    cout << "2 - Alterar Produto" << endl;
-
-    cout << "3 - Apagar Produto" << endl;
+    cout << "2 - Mostra todos os Produtos" << endl;
 
     cout << "0 - Sair" << endl;
 
@@ -72,4 +70,32 @@ void GeralProducts(string **Products)
             break;
     }
 }
+#endif
+
+
+#ifndef ShowProducts_file
+#define ShowProducts_file
+
+
+void ShowProducts(string **Products) {
+    
+     system ("CLS");
+
+    for (int i = 0; i < getsize(Products); i+2)
+    {
+        cout << Products[i][0]  << " | " << (Products[i+1] == nullptr ? Products[i+1][0]) << endl;
+    }
+    
+    
+  
+    int action = 0;
+
+    cout << "1 - Alterar Produto" << endl;
+
+    cout << "2 - Apagar Produtos" << endl;
+
+    cout << "0 - Sair" << endl;
+
+}
+
 #endif
