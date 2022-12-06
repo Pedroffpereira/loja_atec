@@ -1,12 +1,17 @@
 #include "main.h"
 
+
 int main() {
+
+    setlocale(LC_ALL, "Portuguese");
 
     string** products = new string*[100000];
 
     string** SESSION =  new string *[100000];
 
     string** accounts = new string*[100000];
+
+    string** infoClient = new string*[100000];
 
     string** fatura = new string*[100000];
 
@@ -19,9 +24,11 @@ int main() {
 
     fatura[0] = nullptr;
 
-    accounts[0] = new string[5];
+    accounts[0] = new string[9];
 
-    accounts[0][0] = 1;
+    accounts[1] = new string[9];
+
+    accounts[0][0] = "1";
 
     accounts[0][1] = "pedro.pereira@gmail.com";
 
@@ -31,7 +38,25 @@ int main() {
 
     accounts[0][4] = "\n";
 
-    accounts[1] = nullptr;
+    accounts[1][0] = "2";
+
+    accounts[1][1] = "bernardo.teixeira@gmail.com";
+
+    accounts[1][2] = "5678";
+
+    accounts[1][3] = "CLIENT";
+
+    accounts[1][4] = "2";
+
+    accounts[1][5] = "Bernardo Teixeira";
+
+    accounts[1][6] = "913336677";
+
+    accounts[1][7] = "Rua da Avenida";
+
+    accounts[1][8] = "\n";
+
+    accounts[2] = nullptr;
 
     //Lista de contas
     GLOBAL[0] = accounts;
