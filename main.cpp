@@ -1,19 +1,4 @@
-
-
-#include<iostream>
-
-#include<string>
-
-#include<locale.h>
-
-#include "./menus/login.h"
-
-#include "./errors.h"
-
-#include "./menus/admin/menuGeral.h"
-#include "./menus/client/menuGeral.h"
-using namespace std;
-
+#include "main.h"
 
 
 int main() {
@@ -81,20 +66,24 @@ int main() {
 
     //Lista de compras 
 
+    //
+
     //Lista 
 
 
     do {
-        if(login(SESSION, accounts)){
+        if(login(SESSION, GLOBAL[0])){
+            cout << SESSION[0][1];
             if(SESSION[0][3] == "ADMIN"){
-                menu_admin(GLOBAL, SESSION);
+                menu_admin(GLOBAL);
+                delete SESSION[0];
             } else {
-                menu_client(GLOBAL, SESSION);
+                //menu_client(GLOBAL, SESSION);
             }
         } else{
-            getError(1);
+            getErrors(1);
         }
 
     } while(true);
-
+return 0;
 }

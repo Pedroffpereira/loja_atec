@@ -8,8 +8,10 @@ void showClientInfo(string*** GLOBAL,string** SESSION);
 
 void changeClientAcc(string*** GLOBAL,string** SESSION);
 
-void menu_client(string*** GLOBAL,string** SESSION){
 
+<<<<<<< HEAD
+void menu_client(string*** GLOBAL,string** SESSION);
+=======
     system("cls");
 
     int action;
@@ -147,3 +149,4 @@ void changeClientAcc(string*** GLOBAL,string** SESSION){
         break;
     }
 }
+>>>>>>> 4fc2cb3287ca396ad006dfa37780aa9c52c6514d
