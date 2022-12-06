@@ -1,13 +1,17 @@
 #include "./client.h"
 
-#ifndef CreateProduct_file
-#define CreateProduct_file
+#ifndef CreateClients_file
+#define CreateClients_file
 void CreateClients(string **Clients)
 {
 	system ("CLS");
-    string *client = new string[6];
+    string *client = new string[9];
 
-    string name, tel, morada, pass;
+    string name, tel, morada, pass, email, contrib;
+    cout << "Insira o Email do Cliente" << endl;
+
+    cin >> email;
+
     cout << "Insira o Nome do Cliente" << endl;
 
     cin >> name;
@@ -20,6 +24,10 @@ void CreateClients(string **Clients)
 
     cin >> morada;
 
+    cout << "Insira o nº de contribuinte" << endl;
+
+    cin >> contrib;
+
     cout << "Insira a pass" << endl;
 
     cin >> pass;
@@ -27,17 +35,22 @@ void CreateClients(string **Clients)
     //ID CLIENTE
     client[0] = to_string(getsize(Clients) + 1);
     //Name client
-    client[1] = name;
+    client[1] = email;
     //Password
     client[2] = pass;
     //Role
     client[3] = "CLIENT";
+    //contribuinte
+    client[4] = contrib;
+    //nome
+    client[5] = name;
     //tel
-    client[4] = tel;
+    client[6] = tel;
     //morada
-    client[5] = morada;
+    client[7] = morada;
+
     //FIM
-    client[6] = "\n";
+    client[8] = "\n";
 
     growArray(Clients, client);
 
@@ -47,8 +60,8 @@ void CreateClients(string **Clients)
 
 
 
-#ifndef GeralProducts_file
-#define GeralProducts_file
+#ifndef GeralClients_file
+#define GeralClients_file
 void GeralClients(string **Clients)
 {
     
@@ -56,9 +69,9 @@ void GeralClients(string **Clients)
 
     do {
         system ("CLS");
-        cout << "1 - Adicionar Produto" << endl;
+        cout << "1 - Adicionar Clients" << endl;
 
-        cout << "2 - Mostra todos os Produtos ("  << getsize(Clients) << ")" << endl;
+        cout << "2 - Mostra todos os Clients ("  << getsize(Clients) << ")" << endl;
 
         cout << "0 - Sair" << endl;
 
@@ -67,7 +80,7 @@ void GeralClients(string **Clients)
         switch (action)
         {
             case 1:
-                CreateClient(Clients);
+                CreateClients(Clients);
                 break;
             case 2:
                 ShowClients(Clients);
@@ -79,8 +92,8 @@ void GeralClients(string **Clients)
 #endif
 
 
-#ifndef alterProducts_file
-#define alterProducts_file
+#ifndef alterClients_file
+#define alterClients_file
 void alterClients(string **Clients, string id)
 {
 
@@ -127,8 +140,8 @@ void alterClients(string **Clients, string id)
 #endif
 
 
-#ifndef ShowProducts_file
-#define ShowProducts_file
+#ifndef ShowClients_file
+#define ShowClients_file
 
 
 void ShowClients(string **Clients) {

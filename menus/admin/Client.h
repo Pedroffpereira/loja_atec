@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void CreateClient(string **Clients);
+void CreateClients(string **Clients);
 
 void GeralClients(string **Clients);
 

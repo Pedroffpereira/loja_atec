@@ -67,7 +67,7 @@ void GeralClients(string **Clients)
         switch (action)
         {
             case 1:
-                CreateClient(Clients);
+                CreateClients(Clients);
                 break;
             case 2:
                 ShowClients(Clients);

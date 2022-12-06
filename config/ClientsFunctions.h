@@ -2,4 +2,4 @@
 
 using namespace std;
 
-void tableProducts(string** list_products);
+void tableClients(string** list_products);

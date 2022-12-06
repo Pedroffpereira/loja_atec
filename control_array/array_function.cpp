@@ -77,3 +77,48 @@
     
     
 #endif
+
+#ifndef deleteItem_file
+#define deleteItem_file
+    //Make a dynamic grow array and insert valeu
+    void deleteItem(string **Matrix, string id){
+        string** newMatrix = new string*[getsize(Matrix) + 1];
+        
+        int m = 0;
+
+        for (int i = 0; i < getsize(Matrix) + 1; i++)
+        {
+            if(Matrix[i] != nullptr && Matrix[i][0] != id)
+                cout << Matrix[i][0];
+            if(Matrix[i] != nullptr && Matrix[i][0] != id) {
+                
+                newMatrix[m] = new string[getsize(Matrix[i]) + 1];
+                for (int j = 0; j < getsize(Matrix[i]) + 1; j++)
+                {
+                    newMatrix[m][j] = Matrix[i][j];
+                }
+                m++;
+            }
+        }
+        
+        newMatrix[m] = nullptr;
+        
+        for (int i = 0; i < getsize(newMatrix) + 1; i++)
+        {
+            if(newMatrix[i] != nullptr){
+                for (int j = 0; j < getsize(newMatrix[i]) + 1; j++)
+                {
+                    
+                    Matrix[i][j] = newMatrix[i][j];
+                    
+                }
+            }else {
+                Matrix[i] = nullptr;
+            }
+
+        }
+
+    }
+    
+    
+#endif

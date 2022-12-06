@@ -129,9 +129,6 @@ void ShowProducts(string **Products) {
     int action;
 
     do {
-
-        system("CLS");
-
         tableProducts(Products);
 
         cout << "1 - Procurar Produto" << endl;
@@ -157,14 +154,10 @@ void ShowProducts(string **Products) {
                 alterProducts(Products, id);
                 break;
             case 3:
-                /*
                 cout << "Por favor digite o ID do produto";
                 string id;
                 cin >> id;
-                deleteProducts(id, Products);*/
-                break;
-
-            case 4:
+                deleteItem(Products, id);
                 break;
         }
 
