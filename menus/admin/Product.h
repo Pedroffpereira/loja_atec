@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-#include "../../config/ProductsFunctions.h"
+#include "../../config/ProductsFunctions.cpp"
 
 #include "../../control_array/array_function.cpp"
 
@@ -13,3 +13,5 @@ using namespace std;
 void CreateProduct(string **Products);
 
 void GeralProducts(string **Products);
+
+void ShowProducts(string **Products);

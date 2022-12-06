@@ -7,11 +7,11 @@
 #ifndef tableProducts_file
 #define tableProducts_file
 
-    //Show table of products
-    void tableProducts(string** list_products){
+    //Show table of clients
+    void tableClients(string** list_products){
         cout << "___________________________________________________________________" << endl;
         cout << "|*****************************************************************|" << endl;
-        cout << "  Id | Nome | Preço de custo | Preço Venda" << endl;
+        cout << "  Id | Nome | Nº Telefone | Morada" << endl;
 
 
         for (int i = 0; i < getsize(list_products); i++) {
@@ -31,13 +31,13 @@
 #define searchProducts_file
 
     //search of product by position
-    void searchProduct(int position, string value, string** list_products) {
+    void searchClients(int position, string value, string** listClients) {
         
         int j=0;
-        string** searchList = new string* [getsize(list_products)];
-        for (int i = 0; i < getsize(list_products); i++) {
+        string** searchList = new string* [getsize(listClients)];
+        for (int i = 0; i < getsize(listClients); i++) {
 
-            if(list_products[i][position] == value){
+            if(listClients[i][position] == value){
                 searchList[j];
                 j++;
             }

@@ -1,5 +1,5 @@
 #include<string>
-
+#include<iostream>
 using namespace std;
 
 void growArray(string **Matrix, string * Value);

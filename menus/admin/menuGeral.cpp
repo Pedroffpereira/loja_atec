@@ -5,45 +5,45 @@
 #ifndef menu_admin_file
 #define menu_admin_file
 void menu_admin(string*** GLOBAL){
-	system ("CLS");
-    int action;
+
     
-    cout << "1 - Produto" << endl;
-
-    cout << "2 - Cliente" << endl;
-
-    cout << "3 - Relatórios" << endl;
-
-    cout << "4 - Outros" << endl;
-
-    cout << "0 - Sair" << endl;
+    int action;
+    do {
 
 
+        system ("CLS");
+        
+        cout << "1 - Produtos" << endl;
 
-    cin >> action;
+        cout << "2 - Clientes" << endl;
 
-    switch (action)
-    {
-        case 0:
+        cout << "3 - Relatórios" << endl;
 
-           
+        cout << "4 - Outros" << endl;
 
-            break;
+        cout << "0 - Sair" << endl;
 
-        case 1:
-            GeralProducts(GLOBAL[1]);
-            break;
-        case 2:
+
+
+        cin >> action;
+
+        switch (action)
+        {
+            case 1:
+                GeralProducts(GLOBAL[1]);
+                break;
+            case 2:
+                GeralClients(GLOBAL[0]);
+                break;
+            case 3:
             
-            break;
-        case 3:
-        
-            break;
+                break;
 
-        case 4:
-            break;
-        
-    }
-
+            case 4:
+                break;
+            
+        }
+    } while (action != 0);
+    
 }
 #endif

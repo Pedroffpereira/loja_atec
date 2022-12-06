@@ -41,6 +41,8 @@ int main() {
 
     //Lista de compras 
 
+    //
+
     //Lista 
 
 
@@ -49,6 +51,7 @@ int main() {
             cout << SESSION[0][1];
             if(SESSION[0][3] == "ADMIN"){
                 menu_admin(GLOBAL);
+                delete SESSION[0];
             } else {
                 //menu_client(GLOBAL, SESSION);
             }
@@ -57,5 +60,5 @@ int main() {
         }
 
     } while(true);
-
+return 0;
 }
