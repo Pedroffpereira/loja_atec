@@ -20,6 +20,8 @@ void menu_client(string*** GLOBAL,string** SESSION){
 
     cout << "3 - Eliminar conta" << endl;
 
+    cout << "4 - Estado da conta" << endl;
+
     cout << "9 - Retroceder" << endl;
 
     cout << "0 - Sair" << endl;
@@ -30,7 +32,7 @@ void menu_client(string*** GLOBAL,string** SESSION){
 
     switch (action){
         case 0:
-            //exit(0);
+            exit(0);
         break;
 
         case 1:
@@ -49,6 +51,10 @@ void menu_client(string*** GLOBAL,string** SESSION){
             //deleteAcc();
         break;
 
+        case 4:
+
+        break;
+
         case 9:
             //main();
         break;
@@ -64,20 +70,21 @@ void menu_client(string*** GLOBAL,string** SESSION){
 
 }
 
-
-
-
+//id, name, pass, role, tel, morada, \n
+//id, email, pass, role, nome, tel, morada, nif, \n
 void showClientInfo(string*** GLOBAL,string** SESSION){
 
     system("cls");
 
-    cout << "Id de cliente: " << SESSION[0][1] << endl;
+    cout << "Id de cliente: " << SESSION[0][0] << endl;
 
-    cout << "Nome: " << SESSION[0][5] << endl;
+    cout << "Nome: " << SESSION[0][1] << endl;
 
-    cout << "Número de telefone: " << SESSION[0][6] << endl;
+    cout << "Role: " << SESSION[0][3] << endl;
 
-    cout << "Morada: " << SESSION[0][7] << endl;
+    cout << "Número de telefone: " << SESSION[0][5] << endl;
+
+    cout << "Morada: " << SESSION[0][6] << endl;
 }
 
 void changeClientAcc(string*** GLOBAL,string** SESSION){
@@ -134,6 +141,9 @@ void changeClientAcc(string*** GLOBAL,string** SESSION){
     break;
 
     default:
+        cout << "ERRO! Terminando o programa";
+        system("pause");
+        exit(0);
         break;
     }
 }
