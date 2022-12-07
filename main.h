@@ -8,6 +8,8 @@
 #include "./errors.cpp"
 #include "./menus/admin/menuGeral.cpp"
 
+#include "./menus/client/menuGeral.cpp"
+
 #include "./config/ProductsFunctions.cpp"
 
 #include "./control_array/array_function.cpp"
