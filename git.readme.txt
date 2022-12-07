@@ -1,0 +1,8 @@
+git pull origin dev
+git add .
+git commit -m "o que eu quiser"
+
+
+
+
+git push origin dev
