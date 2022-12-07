@@ -1,6 +1,9 @@
 #include<iostream>
-
 #include<string>
+
+//#include "./menuGeral.cpp"
+#include "./manageAcc.cpp"
+#include "./compra.cpp"
 
 using namespace std;
 

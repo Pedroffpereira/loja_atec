@@ -46,7 +46,7 @@ int main() {
 
     accounts[1][3] = "CLIENT";
 
-    accounts[1][4] = "2";
+    accounts[1][4] = "211555999";
 
     accounts[1][5] = "Bernardo Teixeira";
 
@@ -78,7 +78,7 @@ int main() {
                 menu_admin(GLOBAL);
                 delete SESSION[0];
             } else {
-                //menu_client(GLOBAL, SESSION);
+                menu_client(GLOBAL, SESSION);
             }
         } else{
             getErrors(1);
