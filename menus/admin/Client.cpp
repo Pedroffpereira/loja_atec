@@ -35,7 +35,7 @@ void CreateClients(string **Clients)
     //ID CLIENTE
     client[0] = to_string(getsize(Clients) + 1);
     //Name client
-    client[1] = email;
+    email = validateName(Clients);
     //Password
     client[2] = pass;
     //Role

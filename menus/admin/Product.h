@@ -7,6 +7,8 @@
 
 #include "../../control_array/array_function.cpp"
 
+#include "../../config/validate.cpp"
+
 
 using namespace std;
 

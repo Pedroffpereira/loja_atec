@@ -9,19 +9,20 @@ void CreateProduct(string **Products)
 
     string name;
 
-    double price_cost, stock;
+    double price_cost;
+    int stock;
 
     cout << "Insira o Nome do Produto" << endl;
 
-    cin >> name;
+    name = validateName(Products);
 
     cout << "Insira o preço do produto" << endl;
 
-    cin >> price_cost;
+    price_cost = validateTypeDouble();
 
     cout << "Insira a quantidade de stock desse produto" << endl;
 
-    cin >> stock;
+    stock = validateTypeInt();
 
     product[0] = to_string(getsize(Products) + 1);
     //Name Product

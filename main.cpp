@@ -76,10 +76,13 @@ int main() {
             cout << SESSION[0][1];
             if(SESSION[0][3] == "ADMIN"){
                 menu_admin(GLOBAL);
-                delete SESSION[0];
+               
             } else {
-                //menu_client(GLOBAL, SESSION);
+                menu_client(GLOBAL, SESSION);
             }
+            cout << 1;
+             delete[] SESSION[0];
+              SESSION[0] = nullptr;
         } else{
             getErrors(1);
         }
