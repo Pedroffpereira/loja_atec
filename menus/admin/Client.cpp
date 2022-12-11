@@ -35,15 +35,15 @@ void CreateClients(string **Clients)
     //ID CLIENTE
     client[0] = to_string(getsize(Clients) + 1);
     //Name client
-    email = validateName(Clients);
+     client[1] = validateDataByPosition(Clients, 1);
     //Password
     client[2] = pass;
     //Role
     client[3] = "CLIENT";
     //contribuinte
-    client[4] = contrib;
+    client[4] = validateDataByPosition(Clients, 4);
     //nome
-    client[5] = name;
+    client[5] = validateDataByPosition(Clients, 5);
     //tel
     client[6] = tel;
     //morada
@@ -53,8 +53,6 @@ void CreateClients(string **Clients)
     client[8] = "\n";
 
     growArray(Clients, client);
-
-    return;
 }
 #endif
 

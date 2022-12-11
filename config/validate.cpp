@@ -1,14 +1,14 @@
 #include "./validate.h"
 
 
-#ifndef validateName_file
-#define validateName_file
+#ifndef validateDataByPosition_file
+#define validateDataByPosition_file
 
-string validateName(string** Matrix){
+string validateDataByPosition(string** Matrix, int pos){
 
     char first;
 
-    string choice,Name;
+    string choice,Text;
 
 
     bool error = false;
@@ -18,12 +18,12 @@ string validateName(string** Matrix){
 
         getline(cin, choice);
         
-        Name = first + choice;
+        Text = first + choice;
 
         
         for (int i = 0; i < getsize(Matrix); i++)
         {
-            if(Matrix[i][1] == Name){
+            if(Matrix[i][1] == Text){
                 error = true;
                 cout << "O nome já esta a ser utilizado " << endl;
                 cout << "Por favor insira um novo nome" << endl;
@@ -34,7 +34,7 @@ string validateName(string** Matrix){
 
     } while (error);
     
-    return Name;
+    return Text;
 }
 
 

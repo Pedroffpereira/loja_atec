@@ -14,7 +14,7 @@ void CreateProduct(string **Products)
 
     cout << "Insira o Nome do Produto" << endl;
 
-    name = validateName(Products);
+    name = validateDataByPosition(Products,1);
 
     cout << "Insira o preço do produto" << endl;
 

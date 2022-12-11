@@ -3,9 +3,8 @@
 #include "../control_array/array_function.cpp"
 using namespace std;
 
+void loadClients(string** Accounts);
 
+void loadProducts(string** Products);
 
-
-string validateDataByPosition();
-int validateTypeInt();
-double validateTypeDouble();
+void loadBills(string** Bills);

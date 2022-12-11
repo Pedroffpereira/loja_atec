@@ -5,71 +5,31 @@ int main() {
 
     setlocale(LC_ALL, "Portuguese");
 
-    string** products = new string*[100000];
-
-    string** SESSION =  new string *[100000];
-
-    string** accounts = new string*[100000];
-
-    string** infoClient = new string*[100000];
-
-    string** fatura = new string*[100000];
+    
 
     //STACK GLOBAL DA LISTA DAS ESTRUTURAS
     string*** GLOBAL =  new string **[4];
 
+    
+
+    string** SESSION =  new string *[100000];
+    //Accounts
+    GLOBAL[0] = new string*[100000];
+    //Products
+    GLOBAL[1] = new string*[100000];
+    //Bills
+    GLOBAL[2] = new string*[102];
+
     SESSION[0] = nullptr;
 
-    products[0] = nullptr;
-
-    fatura[0] = nullptr;
-
-    accounts[0] = new string[9];
-
-    accounts[1] = new string[9];
-
-    accounts[0][0] = "1";
-
-    accounts[0][1] = "pedro.pereira@gmail.com";
-
-    accounts[0][2] = "1234";
-
-    accounts[0][3] = "ADMIN";
-
-    accounts[0][4] = "\n";
-
-    accounts[1][0] = "2";
-
-    accounts[1][1] = "bernardo.teixeira@gmail.com";
-
-    accounts[1][2] = "5678";
-
-    accounts[1][3] = "CLIENT";
-
-    accounts[1][4] = "2";
-
-    accounts[1][5] = "Bernardo Teixeira";
-
-    accounts[1][6] = "913336677";
-
-    accounts[1][7] = "Rua da Avenida";
-
-    accounts[1][8] = "\n";
-
-    accounts[2] = nullptr;
-
     //Lista de contas
-    GLOBAL[0] = accounts;
+    loadClients(GLOBAL[0]);
     
     //Lista de produtos
-    GLOBAL[1] = products;
+    loadProducts(GLOBAL[1]);
 
     //Lista de compras 
-
-    //
-
-    //Lista 
-
+    loadBills(GLOBAL[2]);
 
     do {
         if(login(SESSION, GLOBAL[0])){
