@@ -31,3 +31,37 @@ void relatorioStock(string **Products) {
 }
 
 #endif
+
+
+#ifndef GeralRelatorios_file
+#define GeralRelatorios_file
+void GeralRelatorios(string ***GLOBAL)
+{
+    
+    int action;
+
+    do {
+        system ("CLS");
+        cout << "1 - Relatório de stock" << endl;
+
+        cout << "2 - Relatório de stock" << endl;
+
+        cout << "3 - Relatório de stock" << endl;
+
+        cout << "0 - Sair" << endl;
+
+        cin >> action;
+        
+        switch (action)
+        {
+            case 1:
+                relatorioStock(GLOBAL[1]);
+                break;
+            case 2:
+                ShowClients(Clients);
+                break;
+        }
+    } while(action != 0);
+    return;
+}
+#endif
