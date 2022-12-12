@@ -124,16 +124,6 @@ void relatorioProdutos(string **Products) {
 #ifndef biggestbuyer_file
 #define biggestbuyer_file
 
-    void biggestbuyer(string** Bills) {
-
-        //string** clients = allclientsBillsSort(Bills, 4);
-
-        cout << "O Client que comprou mais é " << clients[getsize(clients)][0];
-
-
-        system("pause");
-    }
-
 #endif
 
 #ifndef productProfitSort_file
@@ -152,8 +142,8 @@ void relatorioProdutos(string **Products) {
 #endif
 
 
-#ifndef allProductsBills_file
-#define allProductsBills_file
+#ifndef allProductsBillsSort_file
+#define allProductsBillsSort_file
 
     string** allProductsBillsSort(string **bill, int pos) {
         
@@ -277,20 +267,19 @@ void GeralRelatorios(string ***GLOBAL)
         cout << "0 - Sair" << endl;
 
         action = validateTypeInt();
-        
+        string NameProduct;
         switch (action)
         {
             case 1:
                 relatorioProdutos(GLOBAL[1]);
                 break;
             case 2:
-                string NameProduct;
                 cout << "Por favor insira o nome do produto" << endl;
                 NameProduct = inputSpace();
                 relatorioProdutos(GLOBAL[2], NameProduct);
             break;
             case 3:
-                string NameProduct;
+                
                 cout << "Por favor insira o nome do produto" << endl;
                 NameProduct = inputSpace();
                 relatorioClientes(GLOBAL[2], NameProduct);

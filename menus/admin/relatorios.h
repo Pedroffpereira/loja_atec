@@ -15,3 +15,5 @@
 void GeralRelatorios(string ***GLOBAL);
 
 void relatorioStock(string **Products);
+
+string** allProductsBillsSort(string **bill, int pos);
