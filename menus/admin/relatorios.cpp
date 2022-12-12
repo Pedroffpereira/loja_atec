@@ -110,7 +110,7 @@ void GeralRelatorios(string ***GLOBAL)
 
         cout << "0 - Sair" << endl;
 
-        cin >> action;
+        action = validateTypeInt();
         
         switch (action)
         {
