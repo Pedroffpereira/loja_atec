@@ -1,6 +1,8 @@
 #include "./data.h"
 
 //Load Accounts Data
+#ifndef loadProducts_file
+#define loadProducts_file
 void loadClients(string** Accounts) {
 
     Accounts[0] = new string[9];
@@ -45,11 +47,15 @@ void loadClients(string** Accounts) {
 
     Accounts[2] = nullptr;
 }
-
+#endif
+#ifndef loadProducts_file
+#define loadProducts_file
 void loadProducts(string** Products) {
     Products[0] = nullptr;
 }
-
+#endif
+#ifndef loadBills_file
+#define loadBills_file
 void loadBills(string** Bills) {
 
     Bills[0] = new string[12];
@@ -80,3 +86,5 @@ void loadBills(string** Bills) {
 
     Bills[1] = nullptr;
 }
+
+#endif
