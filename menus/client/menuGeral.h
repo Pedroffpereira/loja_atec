@@ -1,9 +1,13 @@
 #include<iostream>
 #include<string>
 
-//#include "./menuGeral.cpp"
+
 #include "./manageAcc.cpp"
 #include "./compra.cpp"
+#include "../admin/relatorios.h"
+#include "../../data/data.cpp"
+#include "../../data/data.h"
+
 
 using namespace std;
 
