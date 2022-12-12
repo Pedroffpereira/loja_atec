@@ -56,9 +56,7 @@ void menu_manage_client(string*** GLOBAL,string** SESSION){
             menu_manage_client(GLOBAL, SESSION);
         break;
 
-        case 9:
-            menu_client(GLOBAL, SESSION);
-        break;
+        
 
     }
 
