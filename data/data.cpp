@@ -52,6 +52,31 @@ void loadProducts(string** Products) {
 
 void loadBills(string** Bills) {
 
-    Bills[0] = nullptr;
+    Bills[0] = new string[12];
 
+    Bills[0][0] = "1";
+
+    Bills[0][1] = "2";
+
+    Bills[0][2] = "1";
+
+    Bills[0][3] = "Blame V1";
+
+    Bills[0][4] = "2";
+
+    Bills[0][5] = "20";
+
+    Bills[0][6] = "24%";
+     
+    Bills[0][7] = "24.80";
+
+    Bills[0][8] = "25";
+
+    Bills[0][9] = "0.20";
+
+    Bills[0][10] = "11-12-2022";
+
+    Bills[0][11] = "\n";
+
+    Bills[1] = nullptr;
 }

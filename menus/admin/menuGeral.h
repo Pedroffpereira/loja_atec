@@ -8,5 +8,7 @@ using namespace std;
 
 #include"./Client.cpp"
 
+#include"./relatorios.cpp"
+
 
 void menu_admin(string*** GLOBAL);

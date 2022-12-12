@@ -3,7 +3,7 @@
 
 int main() {
 
-    setlocale(LC_ALL, "Portuguese");
+setlocale(LC_ALL, "en_US.UTF-8");
 
     
 

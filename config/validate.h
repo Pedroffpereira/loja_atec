@@ -6,6 +6,7 @@ using namespace std;
 
 
 
-string validateDataByPosition();
+string validateDataByPosition(string** Matrix, int pos);
 int validateTypeInt();
 double validateTypeDouble();
+string inputSpace();
