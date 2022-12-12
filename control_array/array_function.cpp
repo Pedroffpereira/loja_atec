@@ -34,7 +34,6 @@
 #define growArray_file
     //Make a dynamic grow array and insert valeu
     void growArray(string **Matrix, string * Value){
-        cout <<  getsize(Matrix) << endl;
         if(getsize(Matrix) > 0) {
 
             int lastPos = getsize(Matrix);
@@ -62,23 +61,15 @@
         } else {
             cout << 1;
             delete[] Matrix[0];
-cout << 2;
             cout << getsize(Value) << endl;
-cout << 3;
             Matrix[0] = new string [getsize(Value) + 1];
-         cout << 4;
             for (int i = 0; i < getsize(Value) + 1; i++)
             {
                 Matrix[0][i] = Value[i];
-cout << 5;
             }
-         cout << 6;
             Matrix[0][getsize(Value)] = "\n";
-         cout << 7;
             Matrix[1] = nullptr;
-cout << 8;
         }
-        delete[] Value;
     }
     
     

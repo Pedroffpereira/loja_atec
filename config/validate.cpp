@@ -1,5 +1,21 @@
 #include "./validate.h"
 
+#ifndef inputSpace_file
+#define inputSpace_file
+string inputSpace() {
+
+    char first;
+    string choice;
+
+    cin >> first;
+
+    getline(cin, choice);
+        
+    return first + choice;
+}
+
+#endif
+
 
 #ifndef validateDataByPosition_file
 #define validateDataByPosition_file

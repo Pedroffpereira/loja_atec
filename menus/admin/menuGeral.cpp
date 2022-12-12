@@ -6,7 +6,7 @@
 #define menu_admin_file
 void menu_admin(string*** GLOBAL){
 
-    
+    setlocale(LC_ALL, "en_US.UTF-8");
     int action;
     do {
 
@@ -18,8 +18,6 @@ void menu_admin(string*** GLOBAL){
         cout << "2 - Clientes" << endl;
 
         cout << "3 - Relatórios" << endl;
-
-        cout << "4 - Outros" << endl;
 
         cout << "0 - Sair" << endl;
 
@@ -36,7 +34,7 @@ void menu_admin(string*** GLOBAL){
                 GeralClients(GLOBAL[0]);
                 break;
             case 3:
-            
+                GeralRelatorios(GLOBAL);
                 break;
 
             case 4:

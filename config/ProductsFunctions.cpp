@@ -1,5 +1,4 @@
 
-#include "../control_array/array_function.h"
 
 #include "./ProductsFunctions.h"
 
@@ -11,7 +10,7 @@
     void tableProducts(string** list_products){
         cout << "___________________________________________________________________" << endl;
         cout << "|*****************************************************************|" << endl;
-        cout << "  Id | Nome | Preço de custo | Preço Venda" << endl;
+        cout << "| Id |     Nome     |    Preço de custo   |  Preço Venda  | Stock |" << endl;
 
 
         for (int i = 0; i < getsize(list_products); i++) {
