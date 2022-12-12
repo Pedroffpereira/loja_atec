@@ -1,9 +1,10 @@
 
+//teste alteração
 
 void showClientInfo(string*** GLOBAL,string** SESSION);
 void changeClientAcc(string*** GLOBAL,string** SESSION);
 
-
+//void deleteAcc(string*** GLOBAL,string** SESSION);
 
 
 
@@ -21,7 +22,7 @@ void menu_manage_client(string*** GLOBAL,string** SESSION){
 
     cout << "3 - Eliminar conta" << endl;
 
-    //cout << "4 - Estado da conta" << endl;
+    cout << "4 - Estado da conta" << endl;
 
     cout << "9 - Retroceder" << endl;
 
@@ -45,15 +46,18 @@ void menu_manage_client(string*** GLOBAL,string** SESSION){
         break;
 
         case 3:
-            //deleteAcc(GLOBAL, SESSION);
+            //deleteAcc();
         break;
 
-        /*case 4:
-
-        break;*/
+        case 4:
+            system("cls");
+            cout << SESSION[0][3];
+            system("pause");
+            menu_manage_client(GLOBAL, SESSION);
+        break;
 
         case 9:
-            //main();
+            menu_client(GLOBAL, SESSION);
         break;
 
     }
@@ -152,3 +156,37 @@ void changeClientAcc(string*** GLOBAL,string** SESSION){
     }
 }
 
+
+
+
+
+void deleteAcc(string*** GLOBAL,string** SESSION){
+    cout << "Tem a certeza que deseja apagar os seus dados? [y/n]";
+    char confirm;
+    cin >> confirm;
+
+    switch (confirm){
+        case 'y':
+            cout << "A apagar os dados";
+            for(int r = 0; r < 20; r++){
+                cout << ".";
+            }
+        break;
+
+        case 'Y':
+            cout << "A apagar os dados";
+            for(int r = 0; r < 20; r++){
+                cout << ".";
+            }
+        break;
+    }
+
+    for(int i = 0; i < 8; i++){
+        SESSION[0][i] = "0";
+    }
+
+
+
+
+
+}
