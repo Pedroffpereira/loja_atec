@@ -1,8 +1,8 @@
 #include "./data.h"
 
 //Load Accounts Data
-#ifndef loadProducts_file
-#define loadProducts_file
+#ifndef loadClients_file
+#define loadClients_file
 void loadClients(string** Accounts) {
 
     Accounts[0] = new string[9];
