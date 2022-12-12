@@ -51,7 +51,19 @@ void loadClients(string** Accounts) {
 #ifndef loadProducts_file
 #define loadProducts_file
 void loadProducts(string** Products) {
-    Products[0] = nullptr;
+    Products[0] = new string[5];
+
+    Products[0][0] = "101";
+
+    Products[0][1] = "Konosuba";
+
+    Products[0][2] = "20";
+
+    Products[0][3] = "26";
+
+    Products[0][4] = "5";
+    
+    Products[1] = nullptr;
 }
 #endif
 #ifndef loadBills_file

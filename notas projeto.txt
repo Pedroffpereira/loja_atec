@@ -1,1 +1,17 @@
-ao fazer login modifica dados cliente
+vendas, data do talão
+
+
+random (<15%) , se sim venda equals zero
+
+git add .
+git commit -m "alterações"
+git push/pull origin dev
+
+
+sempre que declarar função
+
+#ifndef nomeFuncao_file
+#define nomeFuncao_file
+nomeFuncao(){
+}
+#endif
