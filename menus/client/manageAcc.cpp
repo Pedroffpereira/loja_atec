@@ -1,13 +1,13 @@
+#include "./manageAcc.h"
 
-//teste alteração
 
-void showClientInfo(string*** GLOBAL,string** SESSION);
-void changeClientAcc(string*** GLOBAL,string** SESSION);
+
 
 //void deleteAcc(string*** GLOBAL,string** SESSION);
 
 
-
+#ifndef menu_manage_client_file
+#define menu_manage_client_file
 void menu_manage_client(string*** GLOBAL,string** SESSION){
 
     system("cls");
@@ -72,8 +72,12 @@ void menu_manage_client(string*** GLOBAL,string** SESSION){
     
 
 }
+#endif
 
 
+
+#ifndef showClientInfo_file
+#define showClientInfo_file
 //                0      1     2     3    4     5    6       7
 //SESSION[][] = {id, email, pass, role, nif, nome, tel, morada, \n}
 void showClientInfo(string*** GLOBAL,string** SESSION){
@@ -94,7 +98,11 @@ void showClientInfo(string*** GLOBAL,string** SESSION){
 
     cout << "Morada: " << SESSION[0][7] << endl;
 }
+#endif
 
+
+#ifndef changeClientAcc_file
+#define changeClientAcc_file
 void changeClientAcc(string*** GLOBAL,string** SESSION){
     cout << "Id de cliente: " << SESSION[0][0] << endl;
 
@@ -155,11 +163,13 @@ void changeClientAcc(string*** GLOBAL,string** SESSION){
         break;
     }
 }
+#endif
 
 
 
 
-
+#ifndef deleteAcc_file
+#define deleteAcc_file
 void deleteAcc(string*** GLOBAL,string** SESSION){
     cout << "Tem a certeza que deseja apagar os seus dados? [y/n]";
     char confirm;
@@ -190,3 +200,4 @@ void deleteAcc(string*** GLOBAL,string** SESSION){
 
 
 }
+#endif

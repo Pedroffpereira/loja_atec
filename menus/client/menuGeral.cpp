@@ -1,10 +1,14 @@
-#include "menuGeral.h"
+#include "./menuGeral.h"
 
+
+#ifndef menu_client_file
+#define menu_client_file
 void menu_client(string*** GLOBAL,string** SESSION){
 
     system("cls");
     
     int action;
+
 
     do{
 
@@ -24,28 +28,25 @@ void menu_client(string*** GLOBAL,string** SESSION){
 
     switch (action){
         case 1:
-            menu_manage_client(GLOBAL, SESSION);
+            vendaProdutos();
             system("pause");
             menu_client(GLOBAL, SESSION);
         break;
 
         case 2:
-            changeClientAcc(GLOBAL, SESSION);
+            menu_manage_client(GLOBAL, SESSION);
             system("pause");
             menu_client(GLOBAL, SESSION);
         break;
 
         case 3:
-            //relatoriosClientes(GLOBAL, SESSION);
+            //relatorioClientes(Bills, NameClientes);
         break;
 
         /*case 4:
 
         break;*/
 
-        case 9:
-            main();
-        break;
 
     }
 
@@ -59,3 +60,4 @@ void menu_client(string*** GLOBAL,string** SESSION){
     
 
 }
+#endif
