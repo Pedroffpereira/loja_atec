@@ -36,7 +36,7 @@ void menu_client(string*** GLOBAL,string** SESSION){
         break;
 
         case 3:
-            //deleteAcc(GLOBAL, SESSION);
+            //relatoriosClientes(GLOBAL, SESSION);
         break;
 
         /*case 4:
@@ -44,7 +44,7 @@ void menu_client(string*** GLOBAL,string** SESSION){
         break;*/
 
         case 9:
-            //main();
+            main();
         break;
 
     }
