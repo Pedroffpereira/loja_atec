@@ -68,13 +68,13 @@ void loadBills(string** Bills) {
 
     Bills[0][3] = "Blame V1";
 
-    Bills[0][4] = "2";
+    Bills[0][4] = "0";
 
     Bills[0][5] = "20";
 
     Bills[0][6] = "24%";
      
-    Bills[0][7] = "24.80";
+    Bills[0][7] = "2.80";
 
     Bills[0][8] = "25";
 
@@ -84,7 +84,59 @@ void loadBills(string** Bills) {
 
     Bills[0][11] = "\n";
 
-    Bills[1] = nullptr;
+    Bills[1] = new string[12];
+
+    Bills[1][0] = "1";
+
+    Bills[1][1] = "2";
+
+    Bills[1][2] = "1";
+
+    Bills[1][3] = "Blame V1";
+
+    Bills[1][4] = "1";
+
+    Bills[1][5] = "20";
+
+    Bills[1][6] = "24%";
+     
+    Bills[1][7] = "1.80";
+
+    Bills[1][8] = "25";
+
+    Bills[1][9] = "0.20";
+
+    Bills[1][10] = "11-12-2022";
+
+    Bills[1][11] = "\n";
+
+    Bills[2] = new string[12];
+
+    Bills[2][0] = "2";
+
+    Bills[2][1] = "2";
+
+    Bills[2][2] = "1";
+
+    Bills[2][3] = "Blame V2";
+
+    Bills[2][4] = "2";
+
+    Bills[2][5] = "20";
+
+    Bills[2][6] = "24%";
+     
+    Bills[2][7] = "24.80";
+
+    Bills[2][8] = "25";
+
+    Bills[2][9] = "0.20";
+
+    Bills[2][10] = "11-12-2022";
+
+    Bills[2][11] = "\n";
+
+    Bills[3] = nullptr;
 }
 
 #endif

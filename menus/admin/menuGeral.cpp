@@ -36,9 +36,6 @@ void menu_admin(string*** GLOBAL){
             case 3:
                 GeralRelatorios(GLOBAL);
                 break;
-
-            case 4:
-                break;
             
         }
     } while (action != 0);

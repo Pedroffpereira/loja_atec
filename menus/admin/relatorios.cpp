@@ -46,6 +46,7 @@ void relatorioClientes(string **Bills, string NameClientes) {
             growArray(tempBills, Bills[i]);
         }
     }
+
     tableRelatorios(tempBills);
 
     for (int i = 0; i < getsize(tempBills); i++) {
@@ -96,7 +97,7 @@ void relatorioProdutos(string **Products) {
 
         string** Products = allProductsBillsSort(Bills, 4);
 
-        cout << "O produto mais vendido é " << Products[getsize(Products)];
+        cout << "O produto mais vendido é " << Products[getsize(Products) - 1][0]  << endl;
 
 
         system("pause");
@@ -112,7 +113,7 @@ void relatorioProdutos(string **Products) {
         
         string** Products = allProductsBillsSort(Bills, 4);
 
-        cout << "O produto menos vendido é " << Products[0][0];
+        cout << "O produto menos vendido é " << Products[0][0]  << endl;
 
         
         system("pause");
@@ -123,7 +124,16 @@ void relatorioProdutos(string **Products) {
 
 #ifndef biggestbuyer_file
 #define biggestbuyer_file
+    void biggestbuyer(string** Bills) {
 
+        
+        string** Client = allClientsBillsSort(Bills);
+
+        cout << "O Cliente que mais comprou " << Client[getsize(Client)-1][0] << " " <<  Client[getsize(Client)-1][1] << endl;                 
+
+        system("pause");
+
+    }
 #endif
 
 #ifndef productProfitSort_file
@@ -131,15 +141,75 @@ void relatorioProdutos(string **Products) {
 
     void productProfitSort(string** Bills) {
 
-        string** clients = allProductsBillsSort(Bills, 7);
+        string** Products = allProductsBillsSort(Bills, 7);
 
-        cout << "O Client que comprou mais é " << clients[getsize(clients)][0];
-
+        cout << "O Produto que lucrou mais foi " << Products[getsize(Products)-1][0] << " " <<  Products[getsize(Products)-1][1] << endl;                 
 
         system("pause");
     }
 
 #endif
+
+#ifndef allClientsBillsSort_file
+#define allClientsBillsSort_file
+
+    string** allClientsBillsSort(string **bill) {
+        
+        string** clients = new string*[102];
+
+        clients[0] = nullptr;
+        int m=0;
+        for (int i = 0; i < getsize(bill); i++)
+        {
+            bool flag = false;
+            for (int j = 0; j < getsize(clients); j++)
+            {
+                
+                if(clients[j][0] == bill[i][1]) {
+                    cout << clients[j][1];
+                    clients[j][1] = to_string(stoi(clients[j][1]) + 1);
+
+                    flag = true;
+
+                }
+
+            }
+
+            if(!flag){
+                delete[] clients[m];
+
+                clients[m] = new string[2];
+
+                clients[m][0] = bill[i][1];
+
+                clients[m][1] = "1";
+
+                clients[m + 1] = nullptr;
+                m++;
+            }
+
+        }
+        for(int i=0; i< getsize(clients); i++)
+        {		
+            for(int j=i+1; j < getsize(clients) ; j++)
+            {
+                if(clients[i][1]>clients[j][1])
+                {
+                    string* temp = new string[2];
+
+                    temp  = clients[i];
+                    clients[i]=clients[j];
+                    clients[j]=temp;
+                }
+            }
+        }
+
+        return clients;
+    }
+
+
+#endif
+
 
 
 #ifndef allProductsBillsSort_file
@@ -150,18 +220,16 @@ void relatorioProdutos(string **Products) {
         string** Products = new string*[102];
 
         Products[0] = nullptr;
-
+        int m=0;
         for (int i = 0; i < getsize(bill); i++)
         {
-
             bool flag = false;
-
             for (int j = 0; j < getsize(Products); j++)
             {
                 
                 if(Products[j][0] == bill[i][3]) {
 
-                    Products[j][1] = to_string(stoi(Products[j][1]) + stoi(bill[i][pos]));
+                    Products[j][1] = stod(Products[j][1]) + stod(bill[i][pos]);
 
                     flag = true;
 
@@ -170,19 +238,19 @@ void relatorioProdutos(string **Products) {
             }
 
             if(!flag){
-                delete[] Products[i];
+                delete[] Products[m];
 
-                Products[i] = new string[2];
+                Products[m] = new string[2];
 
-                Products[i][0] = bill[i][3];
+                Products[m][0] = bill[i][3];
 
-                Products[i][1] = bill[i][pos];
+                Products[m][1] = bill[i][pos];
 
-                Products[i + 1] = nullptr;
+                Products[m + 1] = nullptr;
+                m++;
             }
 
         }
-        
         for(int i=0; i< getsize(Products); i++)
         {		
             for(int j=i+1; j < getsize(Products) ; j++)
@@ -198,7 +266,6 @@ void relatorioProdutos(string **Products) {
             }
         }
 
-
         return Products;
     }
 
@@ -208,7 +275,9 @@ void relatorioProdutos(string **Products) {
 #ifndef GeralRelatoriostotal_file
 #define GeralRelatoriostotal_file
     void GeralRelatoriosTotal(string **bill) {
+
         setlocale(LC_ALL, "Portuguese");
+
         int action;
     
         do {
@@ -230,12 +299,16 @@ void relatorioProdutos(string **Products) {
             switch (action)
             {
                 case 1:
+                    biggestSell(bill);
                 break;
                 case 2:
+                    smallestSell(bill);
                 break;
                 case 3:
+                    productProfitSort(bill);
                 break;
                 case 4:
+                    biggestbuyer(bill);
                 break;
             }
 
@@ -285,7 +358,7 @@ void GeralRelatorios(string ***GLOBAL)
                 relatorioClientes(GLOBAL[2], NameProduct);
             break;
             case 4:
-                GeralRelatoriosTotal(GLOBAL[1]);
+                GeralRelatoriosTotal(GLOBAL[2]);
             break;
         }
     } while(action != 0);
