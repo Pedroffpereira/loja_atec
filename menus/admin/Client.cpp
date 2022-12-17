@@ -10,11 +10,11 @@ void CreateClients(string **Clients)
     string name, tel, morada, pass, email, contrib;
     cout << "Insira o Email do Cliente" << endl;
 
-    cin >> email;
+    email = validateDataByPosition(Clients, 1);
 
     cout << "Insira o Nome do Cliente" << endl;
 
-    cin >> name;
+    name = validateDataByPosition(Clients, 5);
 
     cout << "Insira o nº de telefone" << endl;
 
@@ -26,24 +26,24 @@ void CreateClients(string **Clients)
 
     cout << "Insira o nº de contribuinte" << endl;
 
-    cin >> contrib;
+    contrib = validateDataByPosition(Clients, 4);
 
     cout << "Insira a pass" << endl;
 
     cin >> pass;
 
     //ID CLIENTE
-    client[0] = to_string(getsize(Clients) + 1);
+    client[0] = to_string(stoi(Clients[getsize(Clients) - 1][0]) + 1);
     //Name client
-    client[1] = validateDataByPosition(Clients, 1);
+    client[1] = email;
     //Password
     client[2] = pass;
     //Role
     client[3] = "CLIENT";
     //contribuinte
-    client[4] = validateDataByPosition(Clients, 4);
+    client[4] = contrib;
     //nome
-    client[5] = validateDataByPosition(Clients, 5);
+    client[5] = name;
     //tel
     client[6] = tel;
     //morada
@@ -73,8 +73,8 @@ void GeralClients(string **Clients)
 
         cout << "0 - Sair" << endl;
 
-        cin >> action;
-        
+        action = validateTypeInt();        
+
         switch (action)
         {
             case 1:
@@ -160,9 +160,9 @@ void ShowClients(string **Clients) {
 
         cout << "0 - Sair" << endl;
 
-        cin >> action;
+        action = validateTypeInt();
 
-            string id;
+        string id;
 
         switch (action)
         {
@@ -175,11 +175,9 @@ void ShowClients(string **Clients) {
                 alterClients(Clients, id);
                 break;
             case 3:
-                /*
                 cout << "Por favor digite o ID do produto";
-                string id;
                 cin >> id;
-                deleteProducts(id, Products);*/
+                deleteItem(Clients, id);
                 break;
 
             case 4:

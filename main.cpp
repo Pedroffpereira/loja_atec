@@ -12,11 +12,11 @@ setlocale(LC_ALL, "en_US.UTF-8");
 
     
 
-    string** SESSION =  new string *[100000];
+    string** SESSION =  new string *[102];
     //Accounts
-    GLOBAL[0] = new string*[100000];
+    GLOBAL[0] = new string*[102];
     //Products
-    GLOBAL[1] = new string*[100000];
+    GLOBAL[1] = new string*[102];
     //Bills
     GLOBAL[2] = new string*[102];
 
@@ -34,6 +34,7 @@ setlocale(LC_ALL, "en_US.UTF-8");
     int action;
 
     do {
+        system("CLS");
         cout << "1 - Login" << endl;
 
         cout << "2 - Criar Conta" << endl;
@@ -57,7 +58,8 @@ setlocale(LC_ALL, "en_US.UTF-8");
                     delete[] SESSION[0];
                     SESSION[0] = nullptr;
                 } else{
-                    cout << "NÃ£o temos nenhum cliente com esses dados";
+                    cout << "Não temos nenhum cliente com esses dados";
+                    system("pause");
                 }
 
             break;

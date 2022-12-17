@@ -6,9 +6,7 @@
 void loadClients(string** Accounts) {
 
     Accounts[0] = new string[9];
-
-    Accounts[1] = new string[9];
-
+    //Conta admin só entra na parte de admin do projeto
     Accounts[0][0] = "1";
 
     Accounts[0][1] = "pedro.pereira@gmail.com";
@@ -26,6 +24,8 @@ void loadClients(string** Accounts) {
     Accounts[0][7] = "Rua";
 
     Accounts[0][8] = "\n";
+
+    Accounts[1] = new string[9];
 
     Accounts[1][0] = "2";
 
@@ -45,13 +45,144 @@ void loadClients(string** Accounts) {
 
     Accounts[1][8] = "\n";
 
-    Accounts[2] = nullptr;
+    Accounts[2] = new string[9];
+
+    Accounts[2][0] = "3";
+
+    Accounts[2][1] = "henrique@gmail.com";
+
+    Accounts[2][2] = "1234";
+
+    Accounts[2][3] = "CLIENT";
+
+    Accounts[2][4] = "2";
+
+    Accounts[2][5] = "Henrique";
+
+    Accounts[2][6] = "913116470";
+
+    Accounts[2][7] = "Rua da Foz";
+
+    Accounts[2][8] = "\n";
+
+    Accounts[3] = new string[9];
+
+    Accounts[3][0] = "4";
+
+    Accounts[3][1] = "benaci@gmail.com";
+
+    Accounts[3][2] = "1234";
+
+    Accounts[3][3] = "CLIENT";
+
+    Accounts[3][4] = "2";
+
+    Accounts[3][5] = "João Benaci";
+
+    Accounts[3][6] = "913336007";
+
+    Accounts[3][7] = "Rua da Boavista";
+
+    Accounts[3][8] = "\n";
+
+    Accounts[4] = new string[9];
+
+    Accounts[4][0] = "5";
+
+    Accounts[4][1] = "joao@gmail.com";
+
+    Accounts[4][2] = "1234";
+
+    Accounts[4][3] = "CLIENT";
+
+    Accounts[4][4] = "2";
+
+    Accounts[4][5] = "João Pereira";
+
+    Accounts[4][6] = "913336671";
+
+    Accounts[4][7] = "Pr Dr jose sampaio";
+
+    Accounts[4][8] = "\n";
+
+    Accounts[5] = nullptr;
 }
 #endif
 #ifndef loadProducts_file
 #define loadProducts_file
 void loadProducts(string** Products) {
-    Products[0] = nullptr;
+    Products[0] = new string[6];
+
+    Products[0][0] = "1";
+
+    Products[0][1] = "Blame V1";
+
+    Products[0][2] = "20";
+
+    Products[0][3] = "26";
+
+    Products[0][4] = "5";
+
+    Products[0][5] = "\n";
+
+    Products[1] = new string[6];
+
+    Products[1][0] = "2";
+
+    Products[1][1] = "Gigant V1";
+
+    Products[1][2] = "20";
+
+    Products[1][3] = "26";
+
+    Products[1][4] = "10";
+
+    Products[1][5] = "\n";
+
+
+    Products[2] = new string[6];
+
+    Products[2][0] = "3";
+
+    Products[2][1] = "Boku no Hero V1";
+
+    Products[2][2] = "10";
+
+    Products[2][3] = "13";
+
+    Products[2][4] = "8";
+
+    Products[2][5] = "\n";
+
+    Products[3] = new string[6];
+
+    Products[3][0] = "4";
+
+    Products[3][1] = "Full Metal Alchemist V1";
+
+    Products[3][2] = "10";
+
+    Products[3][3] = "13";
+
+    Products[3][4] = "8";
+
+    Products[3][5] = "\n";
+
+    Products[4] = new string[6];
+
+    Products[4][0] = "5";
+
+    Products[4][1] = "Boku no Pico V100";
+
+    Products[4][2] = "100";
+
+    Products[4][3] = "130";
+
+    Products[4][4] = "100";
+
+    Products[4][5] = "\n";
+
+    Products[5] = nullptr;
 }
 #endif
 #ifndef loadBills_file

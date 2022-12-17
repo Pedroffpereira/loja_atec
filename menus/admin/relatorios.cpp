@@ -79,11 +79,15 @@ void relatorioProdutos(string **Products) {
         totalStock += stod(Products[i][4]);
     }
 
-    cout << "O total preÃ§o de custo Ã© de " << totalCost << endl;
+    cout << "O total preço de custo é de " << totalCost << endl;
 
-    cout << "O total preÃ§o de venda Ã© de " << totalCost << endl;
+    cout << "O total preço de venda é de " << totalSell << endl;
 
-    cout << "O total STOCK Ã© de  " << totalCost << endl;
+    cout << "O total STOCK é de  " << totalStock << endl;
+
+    cout << endl;
+
+    tableProducts(Products);
     
     system("pause");
 }
@@ -97,7 +101,7 @@ void relatorioProdutos(string **Products) {
 
         string** Products = allProductsBillsSort(Bills, 4);
 
-        cout << "O produto mais vendido Ã© " << Products[getsize(Products) - 1][0]  << endl;
+        cout << "O produto mais vendido é " << Products[getsize(Products) - 1][0]  << endl;
 
 
         system("pause");
@@ -113,7 +117,7 @@ void relatorioProdutos(string **Products) {
         
         string** Products = allProductsBillsSort(Bills, 4);
 
-        cout << "O produto menos vendido Ã© " << Products[0][0]  << endl;
+        cout << "O produto menos vendido é " << Products[0][0]  << endl;
 
         
         system("pause");
@@ -329,13 +333,13 @@ void GeralRelatorios(string ***GLOBAL)
 
     do {
         system ("CLS");
-        cout << "1 - RelatÃ³rio de stock" << endl;
+        cout << "1 - Relatório de stock" << endl;
 
-        cout << "2 - RelatÃ³rio de vendas por produto" << endl;
+        cout << "2 - Relatório de vendas por produto" << endl;
 
-        cout << "3 - RelatÃ³rio de vendas por Cliente" << endl;
+        cout << "3 - Relatório de vendas por Cliente" << endl;
 
-        cout << "4 - RelatÃ³rio de total de vendas com " << endl;
+        cout << "4 - Relatório de total de vendas com " << endl;
 
         cout << "0 - Sair" << endl;
 

@@ -5,6 +5,7 @@
 void CreateProduct(string **Products)
 {
 	system ("CLS");
+
     string *product = new string[6];
 
     string name;
@@ -24,7 +25,7 @@ void CreateProduct(string **Products)
 
     stock = validateTypeInt();
 
-    product[0] = to_string(getsize(Products) + 1);
+    product[0] = to_string(stoi(Products[getsize(Products) - 1][0]) + 1);
     //Name Product
     product[1] = name;
     //cost price 
@@ -98,6 +99,7 @@ void alterProducts(string **Products, string id)
     cout << "Insira a nova quantidade de stock desse produto" << endl;
 
     cin >> stock;
+
     for (int i = 0; i < getsize(Products); i++)
     {
         if(Products[i][0] == id) {
@@ -121,6 +123,26 @@ void alterProducts(string **Products, string id)
 #endif
 
 
+#ifndef addStockProducts_file
+#define addStockProducts_file
+void addStockProducts(string **Products, string id, int stock)
+{
+
+    system ("CLS");
+
+    for (int i = 0; i < getsize(Products); i++)
+    {
+        if(Products[i][0] == id) {
+
+            //Stock
+            Products[i][4] = to_string(stock + stoi(Products[i][4]));
+        }
+    }
+
+    return;
+}
+#endif
+
 #ifndef ShowProducts_file
 #define ShowProducts_file
 
@@ -130,6 +152,7 @@ void ShowProducts(string **Products) {
     int action;
 
     do {
+        system("CLS");
         tableProducts(Products);
 
         cout << "1 - Procurar Produto" << endl;
@@ -138,28 +161,52 @@ void ShowProducts(string **Products) {
 
         cout << "3 - Apagar Produtos" << endl;
 
+        cout << "4 - Acrescentar stock ao Produto" << endl;
+
         cout << "0 - Sair" << endl;
 
-        cin >> action;
+        action = validateTypeInt();
 
-            string id;
+        string id;
+
+        
+
+        int stock;
 
         switch (action)
         {
             case 1:
                 break;
             case 2:
-                cout << "Por favor digite o ID do produto";
+                cout << "Por favor digite o ID do produto" << endl;
                 
                 cin >> id;
+
                 alterProducts(Products, id);
+
                 break;
             case 3:
-                cout << "Por favor digite o ID do produto";
-                string id;
+
+                cout << "Por favor digite o ID do produto" << endl;
+                
                 cin >> id;
+
                 deleteItem(Products, id);
-                break;
+            break;
+            case 4:
+
+                cout << "Por favor digite o ID do produto" << endl;
+                
+                cin >> id;
+
+                cout << "Por favor digite a quantidade que quer acrescentar" << endl;
+                
+                stock = validateTypeInt();
+
+                addStockProducts(Products, id, stock);
+
+            break;
+
         }
 
     } while(action != 0);

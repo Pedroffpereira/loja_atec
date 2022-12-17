@@ -43,8 +43,7 @@
             delete[] Matrix[lastPos];
 
             Matrix[lastPos] = new string [getsize(Value) + 1];
-
-            cout << 2 << endl;
+            
             for (int i = 0; i < getsize(Value) + 1; i++)
             {
 
@@ -59,9 +58,7 @@
             Matrix[lastPos + 1] = nullptr;
 
         } else {
-            cout << 1;
             delete[] Matrix[0];
-            cout << getsize(Value) << endl;
             Matrix[0] = new string [getsize(Value) + 1];
             for (int i = 0; i < getsize(Value) + 1; i++)
             {
@@ -73,6 +70,26 @@
     }
     
     
+#endif
+
+#ifndef getsizestring_file
+#define getsizestring_file
+
+    int getsizestring(string** Matrix, int pos, string text) {
+
+        int length = text.size();
+
+        for (int i = 0; i < getsize(Matrix); i++)
+        {
+            if(length < Matrix[i][pos].size()) {
+                length = Matrix[i][pos].size();
+            }
+        }
+
+        return length;
+
+    }
+
 #endif
 
 #ifndef deleteItem_file
