@@ -10,13 +10,13 @@ void CreateClients(string **Clients)
     string name, tel, morada, pass, email, contrib;
     cout << "Insira o Email do Cliente" << endl;
 
-    cin >> email;
+    email = validateDataByPosition(Clients, 1);
 
     cout << "Insira o Nome do Cliente" << endl;
 
-    cin >> name;
+    name = validateDataByPosition(Clients, 5);
 
-    cout << "Insira o nÂº de telefone" << endl;
+    cout << "Insira o nº de telefone" << endl;
 
     cin >> tel;
 
@@ -24,26 +24,26 @@ void CreateClients(string **Clients)
 
     cin >> morada;
 
-    cout << "Insira o nÂº de contribuinte" << endl;
+    cout << "Insira o nº de contribuinte" << endl;
 
-    cin >> contrib;
+    contrib = validateDataByPosition(Clients, 4);
 
     cout << "Insira a pass" << endl;
 
     cin >> pass;
 
     //ID CLIENTE
-    client[0] = to_string(getsize(Clients) + 1);
+    client[0] = to_string(stoi(Clients[getsize(Clients) - 1][0]) + 1);
     //Name client
-    client[1] = validateDataByPosition(Clients, 1);
+    client[1] = email;
     //Password
     client[2] = pass;
     //Role
     client[3] = "CLIENT";
     //contribuinte
-    client[4] = validateDataByPosition(Clients, 4);
+    client[4] = contrib;
     //nome
-    client[5] = validateDataByPosition(Clients, 5);
+    client[5] = name;
     //tel
     client[6] = tel;
     //morada
@@ -73,8 +73,8 @@ void GeralClients(string **Clients)
 
         cout << "0 - Sair" << endl;
 
-        cin >> action;
-        
+        action = validateTypeInt();        
+
         switch (action)
         {
             case 1:
@@ -102,7 +102,7 @@ void alterClients(string **Clients, string id)
 
     cin >> name;
 
-    cout << "Insira o nÂº de telefone" << endl;
+    cout << "Insira o nº de telefone" << endl;
 
     cin >> tel;
 
@@ -136,7 +136,33 @@ void alterClients(string **Clients, string id)
     return;
 }
 #endif
+#ifndef searchClients_file
+#define searchClients_file
 
+    void searchClients(string** Clients, string id) {
+        system("CLS");
+        string** tempMatrix = new string* [2];
+        tempMatrix[0] = nullptr;
+        tempMatrix[1] = nullptr;
+        for (int i = 0; i < getsize(Clients); i++)
+        {
+            if(Clients[i][0] == id) {
+                delete[] tempMatrix[0];
+                tempMatrix[0] = new string[getsize(Clients[i])];
+                for (int j = 0; j < getsize(Clients[i]); j++)
+                {
+                    tempMatrix[0][j] = Clients[i][j];
+                }
+                
+            }
+        }
+        tableClients(tempMatrix);
+        delete[] tempMatrix[0];
+        delete[] tempMatrix[1];
+        system("PAUSE");
+    }
+
+#endif
 
 #ifndef ShowClients_file
 #define ShowClients_file
@@ -160,13 +186,17 @@ void ShowClients(string **Clients) {
 
         cout << "0 - Sair" << endl;
 
-        cin >> action;
+        action = validateTypeInt();
 
-            string id;
+        string id;
 
         switch (action)
         {
             case 1:
+                cout << "Por favor digite o ID do Cliente";
+                
+                cin >> id;
+                searchClients(Clients, id);
                 break;
             case 2:
                 cout << "Por favor digite o ID do Cliente";
@@ -175,11 +205,9 @@ void ShowClients(string **Clients) {
                 alterClients(Clients, id);
                 break;
             case 3:
-                /*
                 cout << "Por favor digite o ID do produto";
-                string id;
                 cin >> id;
-                deleteProducts(id, Products);*/
+                deleteItem(Clients, id);
                 break;
 
             case 4:

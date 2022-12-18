@@ -5,6 +5,7 @@
 void CreateProduct(string **Products)
 {
 	system ("CLS");
+
     string *product = new string[6];
 
     string name;
@@ -16,7 +17,7 @@ void CreateProduct(string **Products)
 
     name = validateDataByPosition(Products,1);
 
-    cout << "Insira o preÃ§o do produto" << endl;
+    cout << "Insira o preço do produto" << endl;
 
     price_cost = validateTypeDouble();
 
@@ -24,7 +25,7 @@ void CreateProduct(string **Products)
 
     stock = validateTypeInt();
 
-    product[0] = to_string(getsize(Products) + 1);
+    product[0] = to_string(stoi(Products[getsize(Products) - 1][0]) + 1);
     //Name Product
     product[1] = name;
     //cost price 
@@ -91,13 +92,14 @@ void alterProducts(string **Products, string id)
 
     cin >> name;
 
-    cout << "Insira o novo preÃ§o do produto" << endl;
+    cout << "Insira o novo preço do produto" << endl;
 
     cin >> price_cost;
 
     cout << "Insira a nova quantidade de stock desse produto" << endl;
 
     cin >> stock;
+
     for (int i = 0; i < getsize(Products); i++)
     {
         if(Products[i][0] == id) {
@@ -121,6 +123,54 @@ void alterProducts(string **Products, string id)
 #endif
 
 
+#ifndef addStockProducts_file
+#define addStockProducts_file
+void addStockProducts(string **Products, string id, int stock)
+{
+
+    system ("CLS");
+
+    for (int i = 0; i < getsize(Products); i++)
+    {
+        if(Products[i][0] == id) {
+
+            //Stock
+            Products[i][4] = to_string(stock + stoi(Products[i][4]));
+        }
+    }
+
+    return;
+}
+#endif
+
+#ifndef searchProducts_file
+#define searchProducts_file
+
+    void searchProducts(string** Products, string id) {
+        system("CLS");
+        string** tempMatrix = new string* [2];
+        tempMatrix[0] = nullptr;
+        tempMatrix[1] = nullptr;
+        for (int i = 0; i < getsize(Products); i++)
+        {
+            if(Products[i][0] == id) {
+                delete[] tempMatrix[0];
+                tempMatrix[0] = new string[getsize(Products[i])];
+                for (int j = 0; j < getsize(Products[i]); j++)
+                {
+                    tempMatrix[0][j] = Products[i][j];
+                }
+                
+            }
+        }
+        tableProducts(tempMatrix);
+        delete[] tempMatrix[0];
+        delete[] tempMatrix[1];
+        system("PAUSE");
+    }
+
+#endif
+
 #ifndef ShowProducts_file
 #define ShowProducts_file
 
@@ -130,6 +180,7 @@ void ShowProducts(string **Products) {
     int action;
 
     do {
+        system("CLS");
         tableProducts(Products);
 
         cout << "1 - Procurar Produto" << endl;
@@ -138,28 +189,57 @@ void ShowProducts(string **Products) {
 
         cout << "3 - Apagar Produtos" << endl;
 
+        cout << "4 - Acrescentar stock ao Produto" << endl;
+
         cout << "0 - Sair" << endl;
 
-        cin >> action;
+        action = validateTypeInt();
 
-            string id;
+        string id;
+
+        
+
+        int stock;
 
         switch (action)
         {
             case 1:
-                break;
-            case 2:
-                cout << "Por favor digite o ID do produto";
+                cout << "Por favor digite o ID do produto" << endl;
                 
                 cin >> id;
+
+                searchProducts(Products, id);
+                break;
+            case 2:
+                cout << "Por favor digite o ID do produto" << endl;
+                
+                cin >> id;
+
                 alterProducts(Products, id);
+
                 break;
             case 3:
-                cout << "Por favor digite o ID do produto";
-                string id;
+
+                cout << "Por favor digite o ID do produto" << endl;
+                
                 cin >> id;
+
                 deleteItem(Products, id);
-                break;
+            break;
+            case 4:
+
+                cout << "Por favor digite o ID do produto" << endl;
+                
+                cin >> id;
+
+                cout << "Por favor digite a quantidade que quer acrescentar" << endl;
+                
+                stock = validateTypeInt();
+
+                addStockProducts(Products, id, stock);
+
+            break;
+
         }
 
     } while(action != 0);

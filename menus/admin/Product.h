@@ -17,3 +17,4 @@ void CreateProduct(string **Products);
 void GeralProducts(string **Products);
 
 void ShowProducts(string **Products);
+void searchProducts(string** Products, string id);

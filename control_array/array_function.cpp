@@ -35,33 +35,51 @@
     //Make a dynamic grow array and insert valeu
     void growArray(string **Matrix, string * Value){
         if(getsize(Matrix) > 0) {
+            if(getsize(Matrix) <= 101){
+                int lastPos = getsize(Matrix);
 
-            int lastPos = getsize(Matrix);
-
-            
-
-            delete[] Matrix[lastPos];
-
-            Matrix[lastPos] = new string [getsize(Value) + 1];
-
-            cout << 2 << endl;
-            for (int i = 0; i < getsize(Value) + 1; i++)
-            {
-
-                Matrix[lastPos][i] = Value[i];
                 
-                Matrix[lastPos][i] =Value[i];
-                
-                Matrix[lastPos][getsize(Value)] = "\n";
-                
+
+                delete[] Matrix[lastPos];
+
+                Matrix[lastPos] = new string [getsize(Value) + 1];
+
+                for (int i = 0; i < getsize(Value) + 1; i++)
+                {
+
+                    Matrix[lastPos][i] = Value[i];
+                    
+                    Matrix[lastPos][getsize(Value)] = "\n";
+                    
+                }
+                Matrix[lastPos + 1] = nullptr;
+            } else {
+                cout<<endl<<endl<<endl<<endl<<endl;
+                cout << 1<<endl<<endl<<endl<<endl<<endl;
+                string maiorid = "0";
+                cout << 1<<endl<<endl<<endl<<endl<<endl;
+                for (int i = 0; i < getsize(Matrix); i++)
+                {
+                    if(Matrix[i][0] > maiorid) {
+                        maiorid = Matrix[i][0];
+                    }
+                }
+                cout << 1<<endl<<endl<<endl<<endl<<endl;
+                string menorid = maiorid;
+                for (int i = 0; i < getsize(Matrix); i++)
+                {
+                    if(Matrix[i][0] < menorid) {
+                        menorid = Matrix[i][0];
+                    }
+                }
+                cout << 2<<endl<<endl<<endl<<endl<<endl;
+                deleteItem(Matrix, menorid);
+                cout << 3<<endl<<endl<<endl<<endl<<endl;
+                growArray(Matrix, Value);
+                cout << 4<<endl<<endl<<endl<<endl<<endl;
             }
-            delete[] Matrix[getsize(Matrix)];
-            Matrix[lastPos + 1] = nullptr;
-
         } else {
-            cout << 1;
             delete[] Matrix[0];
-            cout << getsize(Value) << endl;
             Matrix[0] = new string [getsize(Value) + 1];
             for (int i = 0; i < getsize(Value) + 1; i++)
             {
@@ -75,6 +93,26 @@
     
 #endif
 
+#ifndef getsizestring_file
+#define getsizestring_file
+
+    int getsizestring(string** Matrix, int pos, string text) {
+
+        int length = text.size();
+
+        for (int i = 0; i < getsize(Matrix); i++)
+        {
+            if(length < Matrix[i][pos].size()) {
+                length = Matrix[i][pos].size();
+            }
+        }
+
+        return length;
+
+    }
+
+#endif
+
 #ifndef deleteItem_file
 #define deleteItem_file
     //Make a dynamic grow array and insert valeu
@@ -85,8 +123,6 @@
 
         for (int i = 0; i < getsize(Matrix) + 1; i++)
         {
-            if(Matrix[i] != nullptr && Matrix[i][0] != id)
-                cout << Matrix[i][0];
             if(Matrix[i] != nullptr && Matrix[i][0] != id) {
                 
                 newMatrix[m] = new string[getsize(Matrix[i]) + 1];
