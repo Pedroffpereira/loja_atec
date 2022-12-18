@@ -21,7 +21,7 @@ string inputSpace() {
 #define validateDataByPosition_file
 
 string validateDataByPosition(string** Matrix, int pos){
-
+setlocale(LC_ALL, "Portuguese");
     char first;
 
     string choice,Text;
@@ -41,8 +41,8 @@ string validateDataByPosition(string** Matrix, int pos){
         {
             if(Matrix[i][1] == Text){
                 error = true;
-                cout << "O nome já esta a ser utilizado " << endl;
-                cout << "Por favor insira um novo nome" << endl;
+                cout << "O valor já esta a ser utilizado " << endl;
+                cout << "Por favor insira um novo valor" << endl;
                 break;
             }
         }
@@ -63,7 +63,7 @@ string validateDataByPosition(string** Matrix, int pos){
 #define validatetype_file
 
 int validateTypeInt(){
-
+setlocale(LC_ALL, "Portuguese");
     int choice;
 
     while (!(cin >> choice))
@@ -85,7 +85,7 @@ int validateTypeInt(){
 
 
 double validateTypeDouble(){
-
+setlocale(LC_ALL, "Portuguese");
     double choice;
 
     while (!(cin >> choice))

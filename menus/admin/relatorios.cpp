@@ -78,7 +78,7 @@ void relatorioProdutos(string **Products) {
 
         totalStock += stod(Products[i][4]);
     }
-
+    system("CLS");
     cout << "O total preço de custo é de " << totalCost << endl;
 
     cout << "O total preço de venda é de " << totalSell << endl;
@@ -133,7 +133,7 @@ void relatorioProdutos(string **Products) {
         
         string** Client = allClientsBillsSort(Bills);
 
-        cout << "O Cliente que mais comprou " << Client[getsize(Client)-1][0] << " " <<  Client[getsize(Client)-1][1] << endl;                 
+        cout << "O Id do Cliente que mais comprou é " << Client[getsize(Client)-1][0] << " " <<  Client[getsize(Client)-1][1] << endl;                 
 
         system("pause");
 
@@ -170,7 +170,6 @@ void relatorioProdutos(string **Products) {
             {
                 
                 if(clients[j][0] == bill[i][1]) {
-                    cout << clients[j][1];
                     clients[j][1] = to_string(stoi(clients[j][1]) + 1);
 
                     flag = true;
@@ -281,13 +280,13 @@ void relatorioProdutos(string **Products) {
     void GeralRelatoriosTotal(string **bill) {
 
         setlocale(LC_ALL, "Portuguese");
-
         int action;
     
         do {
 
             system ("CLS");
 
+        tableRelatorios(bill);
             cout << "1 - Produto mais vendido" << endl;
 
             cout << "2 - Produto menos vendido" << endl;
@@ -333,6 +332,8 @@ void GeralRelatorios(string ***GLOBAL)
 
     do {
         system ("CLS");
+        
+        tableRelatorios(GLOBAL[2]);
         cout << "1 - Relatório de stock" << endl;
 
         cout << "2 - Relatório de vendas por produto" << endl;

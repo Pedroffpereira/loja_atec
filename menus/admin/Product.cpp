@@ -17,7 +17,7 @@ void CreateProduct(string **Products)
 
     name = validateDataByPosition(Products,1);
 
-    cout << "Insira o preÃ§o do produto" << endl;
+    cout << "Insira o preço do produto" << endl;
 
     price_cost = validateTypeDouble();
 
@@ -92,7 +92,7 @@ void alterProducts(string **Products, string id)
 
     cin >> name;
 
-    cout << "Insira o novo preÃ§o do produto" << endl;
+    cout << "Insira o novo preço do produto" << endl;
 
     cin >> price_cost;
 
@@ -143,6 +143,34 @@ void addStockProducts(string **Products, string id, int stock)
 }
 #endif
 
+#ifndef searchProducts_file
+#define searchProducts_file
+
+    void searchProducts(string** Products, string id) {
+        system("CLS");
+        string** tempMatrix = new string* [2];
+        tempMatrix[0] = nullptr;
+        tempMatrix[1] = nullptr;
+        for (int i = 0; i < getsize(Products); i++)
+        {
+            if(Products[i][0] == id) {
+                delete[] tempMatrix[0];
+                tempMatrix[0] = new string[getsize(Products[i])];
+                for (int j = 0; j < getsize(Products[i]); j++)
+                {
+                    tempMatrix[0][j] = Products[i][j];
+                }
+                
+            }
+        }
+        tableProducts(tempMatrix);
+        delete[] tempMatrix[0];
+        delete[] tempMatrix[1];
+        system("PAUSE");
+    }
+
+#endif
+
 #ifndef ShowProducts_file
 #define ShowProducts_file
 
@@ -176,6 +204,11 @@ void ShowProducts(string **Products) {
         switch (action)
         {
             case 1:
+                cout << "Por favor digite o ID do produto" << endl;
+                
+                cin >> id;
+
+                searchProducts(Products, id);
                 break;
             case 2:
                 cout << "Por favor digite o ID do produto" << endl;
