@@ -24,7 +24,6 @@
 #endif
 
 
-
 #ifndef searchClients_file
 #define searchClients_file
 

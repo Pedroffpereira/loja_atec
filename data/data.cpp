@@ -51,7 +51,10 @@ void loadClients(string** Accounts) {
 #ifndef loadProducts_file
 #define loadProducts_file
 void loadProducts(string** Products) {
-    Products[0] = new string[5];
+    //id, nome, preçoSemIva, preçoComIva, stock, \n
+    Products[0] = new string[6];
+
+    Products[1] = new string[6];
 
     Products[0][0] = "101";
 
@@ -62,13 +65,33 @@ void loadProducts(string** Products) {
     Products[0][3] = "26";
 
     Products[0][4] = "5";
+
+    Products[0][5] = "\n";
+
+    Products[1][0] = "102";
+
+    Products[1][1] = "Chainsaw Man";
+
+    Products[1][2] = "30";
+
+    Products[1][3] = "29";
+
+    Products[1][4] = "20";
+
+    Products[1][5] = "\n";
+
+
+
+
     
-    Products[1] = nullptr;
+    Products[2] = nullptr;
 }
 #endif
 #ifndef loadBills_file
 #define loadBills_file
 void loadBills(string** Bills) {
+
+    //idfatura, idcliente, idlinha, nome, quant, precoSiva, iva, precoCiva, valorEntregue, troco, data, \n 
 
     Bills[0] = new string[12];
 

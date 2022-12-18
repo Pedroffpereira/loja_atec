@@ -28,7 +28,7 @@ void menu_client(string*** GLOBAL,string** SESSION){
 
     switch (action){
         case 1:
-            vendaProdutos(GLOBAL[1], SESSION);
+            vendaProdutos(GLOBAL[1], SESSION, GLOBAL[2]);
             system("pause");
             menu_client(GLOBAL, SESSION);
         break;
