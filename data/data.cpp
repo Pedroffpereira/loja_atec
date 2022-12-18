@@ -111,14 +111,11 @@ void loadClients(string** Accounts) {
 #ifndef loadProducts_file
 #define loadProducts_file
 void loadProducts(string** Products) {
-    //id, nome, preçoSemIva, preçoComIva, stock, \n
     Products[0] = new string[6];
 
-    Products[1] = new string[6];
+    Products[0][0] = "1";
 
-    Products[0][0] = "101";
-
-    Products[0][1] = "Konosuba";
+    Products[0][1] = "Blame V1";
 
     Products[0][2] = "20";
 
@@ -128,23 +125,64 @@ void loadProducts(string** Products) {
 
     Products[0][5] = "\n";
 
-    Products[1][0] = "102";
+    Products[1] = new string[6];
 
-    Products[1][1] = "Chainsaw Man";
+    Products[1][0] = "2";
 
-    Products[1][2] = "30";
+    Products[1][1] = "Gigant V1";
 
-    Products[1][3] = "29";
+    Products[1][2] = "20";
 
-    Products[1][4] = "20";
+    Products[1][3] = "26";
+
+    Products[1][4] = "10";
 
     Products[1][5] = "\n";
 
 
+    Products[2] = new string[6];
 
+    Products[2][0] = "3";
 
-    
-    Products[2] = nullptr;
+    Products[2][1] = "Boku no Hero V1";
+
+    Products[2][2] = "10";
+
+    Products[2][3] = "13";
+
+    Products[2][4] = "8";
+
+    Products[2][5] = "\n";
+
+    Products[3] = new string[6];
+
+    Products[3][0] = "4";
+
+    Products[3][1] = "Full Metal Alchemist V1";
+
+    Products[3][2] = "10";
+
+    Products[3][3] = "13";
+
+    Products[3][4] = "8";
+
+    Products[3][5] = "\n";
+
+    Products[4] = new string[6];
+
+    Products[4][0] = "5";
+
+    Products[4][1] = "Boku no Pico V100";
+
+    Products[4][2] = "100";
+
+    Products[4][3] = "130";
+
+    Products[4][4] = "100";
+
+    Products[4][5] = "\n";
+
+    Products[5] = nullptr;
 }
 #endif
 #ifndef loadBills_file

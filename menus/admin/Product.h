@@ -1,7 +1,7 @@
 #include <string>
 
 #include <iostream>
-
+#include <cmath>
 
 #include "../../config/ProductsFunctions.cpp"
 

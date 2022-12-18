@@ -2,6 +2,7 @@
 
 #ifndef CreateProduct_file
 #define CreateProduct_file
+//Cria o Produto
 void CreateProduct(string **Products)
 {
 	system ("CLS");
@@ -48,6 +49,7 @@ void CreateProduct(string **Products)
 
 #ifndef GeralProducts_file
 #define GeralProducts_file
+//Menu Geral dos produtos
 void GeralProducts(string **Products)
 {
     

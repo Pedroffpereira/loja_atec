@@ -48,7 +48,7 @@
                                 getsizestring(list_clients, 3, "Role") + 21
             ) << "'"  << endl << setfill(' ');
         } else {
-            cout << "Não foram encontrados Clientes";
+            cout << "Não foram encontrados Clientes" << endl;
         }
     }
 #endif
