@@ -19,7 +19,7 @@ string inputSpace() {
 
 #ifndef validateDataByPosition_file
 #define validateDataByPosition_file
-
+//Valida se os dados estão repetido por dado uma possição x
 string validateDataByPosition(string** Matrix, int pos){
 setlocale(LC_ALL, "Portuguese");
     char first;

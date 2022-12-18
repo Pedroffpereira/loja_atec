@@ -2,6 +2,7 @@
 
 #ifndef CreateProduct_file
 #define CreateProduct_file
+//Cria o Produto
 void CreateProduct(string **Products)
 {
 	system ("CLS");
@@ -29,7 +30,7 @@ void CreateProduct(string **Products)
     //Name Product
     product[1] = name;
     //cost price 
-    product[2] = to_string((price_cost));
+    product[2] = to_string(price_cost);
     //sell price
     product[3] = to_string( price_cost * 1.30);
     //Stock
@@ -48,6 +49,7 @@ void CreateProduct(string **Products)
 
 #ifndef GeralProducts_file
 #define GeralProducts_file
+//Menu Geral dos produtos
 void GeralProducts(string **Products)
 {
     

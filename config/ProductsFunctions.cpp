@@ -13,14 +13,14 @@
                                 getsizestring(list_products, 1, "Nome") + 
                                 getsizestring(list_products, 2, "Preço de custo") + 
                                 getsizestring(list_products, 2, "Preço Venda") +
-                                getsizestring(list_products, 2, "Stock") + 15
+                                getsizestring(list_products, 2, "Quantidade") + 15
             )
             << "." << endl << setfill(' ');
             cout << "| " << setw(getsizestring(list_products, 0, "Id")) << "Id" << " | "
                 << setw(getsizestring(list_products, 1, "Nome")) << left << "Nome" << " | "
                 << setw(getsizestring(list_products, 2, "Preço de custo"))  << right << "Preço de custo" << " | "
                 << setw(getsizestring(list_products, 2, "Preço Venda")) << "Preço Venda" << " | "
-                << setw(getsizestring(list_products, 2, "Stock")) << "Stock" << " |" << endl;
+                << setw(getsizestring(list_products, 2, "Quantidade")) << "Quantidade" << " |" << endl;
 
 
             for (int i = 0; i < getsize(list_products); i++) {
@@ -30,14 +30,14 @@
                     << setw(getsizestring(list_products, 1, "Nome")) << left << list_products[i][1] << " | "
                     << setw(getsizestring(list_products, 2, "Preço de custo")) << right << list_products[i][2] << " | "
                     << setw(getsizestring(list_products, 3, "Preço Venda")) << list_products[i][3] << " | " 
-                    << setw(getsizestring(list_products, 4, "Stock")) << list_products[i][4] << " |" << endl;
+                    << setw(getsizestring(list_products, 4, "Quantidade")) << list_products[i][4] << " |" << endl;
             }
 
             cout << "'" << setfill('-') << setw(getsizestring(list_products, 0, "Id") +
                                 getsizestring(list_products, 1, "Nome") + 
                                 getsizestring(list_products, 2, "Preço de custo") + 
                                 getsizestring(list_products, 2, "Preço Venda") +
-                                getsizestring(list_products, 2, "Stock") + 15
+                                getsizestring(list_products, 2, "Quantidade") + 15
             )
             << "'" << endl << setfill(' ');
         } else {
