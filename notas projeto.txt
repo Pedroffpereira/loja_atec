@@ -1,4 +1,15 @@
+TODO list:
+-adicionar checkout no carrinho;
+-adicionar verificação para quando stock for <= 0 ao adicionar ao carrinho;
+-se adicionar produtos 101, 102 dá mas se adicionar 102, 101 só guarda a partir do 101;
+
+
+
+bernardo.teixeira@gmail.com
+
 vendas, data do talão
+
+apresentar tabela produtos
 
 
 random (<15%) , se sim venda equals zero
@@ -15,3 +26,29 @@ sempre que declarar função
 nomeFuncao(){
 }
 #endif
+
+
+////////////////////set time (importante para o talão)
+//Ignore the error C4996
+#pragma warning(disable : 4996)
+
+
+        time_t tim = time(0);
+        tm* gottime = gmtime(&tim);
+
+        cout << "Current time: " << gottime->tm_hour << ":" << gottime->tm_min << ":" << gottime->tm_sec << endl;
+        cout << "Current date: " << gottime->tm_mday << "/" << gottime->tm_mon << "/" << gottime->tm_year + 1900 << endl;
+
+ 
+
+//gottime->tm_hour              => hora
+
+//gottime->tm_min               => minuto
+
+//gottime->tm_sec                => segundo
+
+//gottime->tm_mday            => dia
+
+//gottime->tm_mon              => mes
+
+//gottime->tm_year  + 1900 => ano

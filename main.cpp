@@ -6,7 +6,6 @@ int main() {
 setlocale(LC_ALL, "en_US.UTF-8");
 
     
-
     //STACK GLOBAL DA LISTA DAS ESTRUTURAS
     string*** GLOBAL =  new string **[3];
 

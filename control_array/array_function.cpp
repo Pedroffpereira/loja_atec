@@ -32,7 +32,7 @@
 
 #ifndef growArray_file
 #define growArray_file
-    //Make a dynamic grow array and insert valeu
+    //Make a dynamic grow array and insert value
     void growArray(string **Matrix, string * Value){
         if(getsize(Matrix) > 0) {
             if(getsize(Matrix) <= 101){
