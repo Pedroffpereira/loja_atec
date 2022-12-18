@@ -65,7 +65,7 @@
                             getsizestring(Bills, 11, "Data") + 36
         ) << "'"  << endl << setfill(' ');
         } else {
-            cout << "Não foram encontrados Faturas";
+            cout << "Não foram encontrados Faturas" << endl;
         }
     }
 #endif

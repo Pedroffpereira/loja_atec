@@ -29,7 +29,7 @@ void CreateProduct(string **Products)
     //Name Product
     product[1] = name;
     //cost price 
-    product[2] = to_string(price_cost);
+    product[2] = to_string((price_cost));
     //sell price
     product[3] = to_string( price_cost * 1.30);
     //Stock

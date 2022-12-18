@@ -30,6 +30,7 @@ setlocale(LC_ALL, "Portuguese");
     bool error = false;
     
     do {
+        error = false;
         cin >> first;
 
         getline(cin, choice);

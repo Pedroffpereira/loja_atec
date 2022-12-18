@@ -41,7 +41,7 @@
             )
             << "'" << endl << setfill(' ');
         } else {
-            cout << "Não foram encontrados Produtos";
+            cout << "Não foram encontrados Produtos" << endl;
         }
     }
 #endif
