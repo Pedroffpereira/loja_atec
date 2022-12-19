@@ -13,7 +13,7 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
 
 
 
-    string currentTime = to_string(gottime -> tm_hour) + ":" + to_string(gottime -> tm_min) + ":" + to_string(gottime -> tm_sec);
+    string currentTime = to_string(gottime -> tm_mday) + "/" + to_string(gottime -> tm_mon) + "/" + to_string(gottime -> tm_year) + "   " + to_string(gottime -> tm_hour) + ":" + to_string(gottime -> tm_min) + ":" + to_string(gottime -> tm_sec);
 
     //numFatura, numCliente, numLinha, nomeProduto, quantidade, preçoSemIva, IVA, totalProduto, total, valorEntregue, troco, data, \n
     string** carrinhoCompras = new string *[103];
@@ -24,7 +24,7 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
 
     char confirmacao, insert, confirm;
     string tempID, tempStock;
-    bool inserir = true, productBuy = true, confirmStock = true, checkout = true, payment = true;
+    bool inserir = true, productBuy = true, confirmStock = true, checkout = true, payment = true, availableStock = true;
     double total, valorEntregue, troco;
 
     
@@ -41,47 +41,70 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
         switch(confirmacao){
             case 'y':
                 system("cls");
-                cout << "Insira o ID do produto: ";
-                cin >> tempID;
-                for (int i = 0; i < getsize(Products); i++){
-                    while(confirmStock){
-                        if(tempID == Products[i][0] && stoi(Products[i][4]) > 0){
-                            delete[] carrinhoCompras[i];
-                            carrinhoCompras[i] = new string[13];
-                            carrinhoCompras[i][3] = Products[i][1];
-                            cout << "Insira a quantidade que deseja: ";
-                            cin >> tempStock;
-                            if(stoi(tempStock) <= stoi(Products[i][4])){
-                                carrinhoCompras[i][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
-                                carrinhoCompras[i][1] = SESSION[0][0];
-                                carrinhoCompras[i][2] = to_string(getsize(carrinhoCompras) + 1);
-                                carrinhoCompras[i][4] = tempStock;
-                                carrinhoCompras[i][5] = Products[i][2];
-                                carrinhoCompras[i][6] = "24%";
-                                carrinhoCompras[i][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
-                                carrinhoCompras[i][8] = "0";
-                                carrinhoCompras[i][9] = "0";
-                                carrinhoCompras[i][11] = "\n";
-                                carrinhoCompras[i + 1] = nullptr;
-                                //remover ao stock do produto
-                                Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
-                                confirmStock = false;
+                while(confirmStock){
+                    confirmStock = true;
+                    cout << "Insira o ID do produto: ";
+
+                    cin >> tempID;
+                    for (int i = 0; i < getsize(Products); i++){
+                        if(tempID == Products[i][0]){
+                            if(stoi(Products[i][4]) > 0){
+                                int lastPos = getsize(carrinhoCompras);
+                                delete[] carrinhoCompras[lastPos];
+                                carrinhoCompras[lastPos] = new string[13];
+
+                                carrinhoCompras[lastPos][3] = Products[i][1];
+                                cout << "Insira a quantidade que deseja: ";
+                                while(availableStock){
+                                    cin >> tempStock;
+                                        int j = 0;
+                                        if(stoi(tempStock) <= stoi(Products[i][4])){
+                                            //preencher carrinhoCompras
+                                            carrinhoCompras[lastPos][1] = SESSION[0][0];
+                                            carrinhoCompras[lastPos][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
+                                            carrinhoCompras[lastPos][2] = to_string(lastPos + 1);
+                                            carrinhoCompras[lastPos][4] = tempStock;
+                                            carrinhoCompras[lastPos][5] = Products[i][2];
+                                            carrinhoCompras[lastPos][6] = "24%";
+                                            carrinhoCompras[lastPos][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
+                                            carrinhoCompras[lastPos][8] = "0";
+                                            carrinhoCompras[lastPos][9] = "0";
+                                            carrinhoCompras[lastPos][10] = "0";
+                                            carrinhoCompras[lastPos][12] = "\n";
+                                            carrinhoCompras[lastPos + 1] = nullptr;
+
+                                            //remover ao stock do produto
+                                            Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
+
+                                            cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
+                                            system("pause");
+                                            confirmStock = false;
+                                            availableStock = false;
+                                        }
+                                        else if(stoi(tempStock) > stoi(Products[i][4])){
+                                            cout << "Quantidade em stock insuficiente! Stock disponível: " << Products[i][4] << ". Por favor volte a inserir a quantidade desejada: ";
+                                        }
+                                    
+                                    
+                                }
+                                
                             }
-                        }
-                        else if(stoi(Products[i][4]) <= 0){
-                            cout << "Quantidade em stock insuficiente!";
+                            else if(stoi(Products[i][4]) <= 0){
+                            cout << "De momento não temos stock suficiente. Por favor tente mais tarde.";
                             system("pause");
                             confirmStock = false;
+                            }
                         }
-                        cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
-                        system("pause");
-
+                        
                     }
                     
+
                 }
+                    
 
                     while(productBuy){
                         confirmStock = true;
+                        availableStock = true;
                         system("cls");
                         cout << "Deseja inserir mais algum produto?[y/n] ";
                         cin >> insert;
@@ -91,41 +114,52 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                             case 'y':
                                 system("cls");
                                 cout << "Insira o ID do produto: ";
-                                cin >> tempID;
                                 while(confirmStock){
-                                    for (int i = 1; i < getsize(Products); i++){
-                                        if(tempID == Products[i][0] && stoi(Products[i][4]) > 0){
+                                    cin >> tempID;
+                                    for (int i = 0; i < getsize(Products); i++){
+                                        if(tempID == Products[i][0]){
+                                            if(stoi(Products[i][4]) > 0){
+                                                int lastPos = getsize(carrinhoCompras);
+                                                delete[] carrinhoCompras[lastPos];
+                                                carrinhoCompras[lastPos] = new string[13];
 
-                                            delete[] carrinhoCompras[i];
-                                            carrinhoCompras[i] = new string[13];
-                                            carrinhoCompras[i][3] = Products[i][1];
-                                            cout << "Insira a quantidade que deseja: ";
-                                            cin >> tempStock;
-                                            if(stoi(tempStock) <= stoi(Products[i][4])){
-                                                carrinhoCompras[i][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
-                                                carrinhoCompras[i][1] = SESSION[0][0];
-                                                carrinhoCompras[i][2] = to_string(getsize(carrinhoCompras) + 1);
-                                                carrinhoCompras[i][4] = tempStock;
-                                                carrinhoCompras[i][5] = Products[i][2];
-                                                carrinhoCompras[i][6] = "24%";
-                                                carrinhoCompras[i][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
-                                                carrinhoCompras[i][8] = "0";
-                                                carrinhoCompras[i][9] = "0";
-                                                carrinhoCompras[i][11] = "\n";
-                                                carrinhoCompras[i + 1] = nullptr;
-                                                Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
-                                                confirmStock = false;
-                                                cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
-                                                system("pause");
+                                                carrinhoCompras[lastPos][3] = Products[i][1];
+                                                cout << "Insira a quantidade que deseja: ";
+                                                while(availableStock){
+                                                    cin >> tempStock;
+                                                        if(stoi(tempStock) <= stoi(Products[i][4])){
+                                                            carrinhoCompras[lastPos][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
+                                                            carrinhoCompras[lastPos][1] = SESSION[0][0];
+                                                            carrinhoCompras[lastPos][2] = to_string(lastPos + 1);
+                                                            carrinhoCompras[lastPos][4] = tempStock;
+                                                            carrinhoCompras[lastPos][5] = Products[i][2];
+                                                            carrinhoCompras[lastPos][6] = "24%";
+                                                            carrinhoCompras[lastPos][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
+                                                            carrinhoCompras[lastPos][8] = "0";
+                                                            carrinhoCompras[lastPos][9] = "0";
+                                                            carrinhoCompras[lastPos][10] = "0";
+                                                            carrinhoCompras[lastPos][12] = "\n";
+                                                            carrinhoCompras[lastPos + 1] = nullptr;
+                                                            //remover ao stock do produto
+                                                            Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
+                                                            cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
+                                                            system("pause");
+                                                            availableStock = false;
+                                                            confirmStock = false;
+                                                        }
+                                                        else if(stoi(tempStock) > stoi(Products[i][4])){
+                                                            cout << "Quantidade em stock insuficiente! Stock disponível: " << Products[i][4] << ". Por favor volte a inserir a quantidade desejada: ";
+                                                        }
+                                                    
+                                                }
                                             }
-                                            
-                                        }
-                                        else if(stoi(Products[i][4]) <= 0){
+                                            else if(stoi(Products[i][4]) <= 0){
                                             cout << "Quantidade em stock insuficiente!";
                                             system("pause");
                                             confirmStock = false;
+                                            }
                                         }
-
+                        
                                     }
 
                                 }
@@ -134,42 +168,51 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                             case 'Y':
                                 system("cls");
                                 cout << "Insira o ID do produto: ";
-                                cin >> tempID;
                                 while(confirmStock){
-                                    for (int i = 1; i < getsize(Products); i++){
-                                        if(tempID == Products[i][0] && stoi(Products[i][4]) > 0){
-                                            delete[] carrinhoCompras[i];
-                                            carrinhoCompras[i] = new string[13];
-                                            carrinhoCompras[i][3] = Products[i][1];
-                                            cout << "Insira a quantidade que deseja: ";
-                                            cin >> tempStock;
-                                            if(stoi(tempStock) <= stoi(Products[i][4])){
-                                                carrinhoCompras[i][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
-                                                carrinhoCompras[i][1] = SESSION[0][0];
-                                                cout << "ultimo carrinho [2]: " << getsize(carrinhoCompras) + 1;
-                                                system("pause");
-                                                carrinhoCompras[i][2] = to_string(getsize(carrinhoCompras) + 1);
-                                                carrinhoCompras[i][4] = tempStock;
-                                                carrinhoCompras[i][5] = Products[i][2];
-                                                carrinhoCompras[i][6] = "24%";
-                                                carrinhoCompras[i][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
-                                                carrinhoCompras[i][8] = "0";
-                                                carrinhoCompras[i][9] = "0";
-                                                carrinhoCompras[i][11] = "\n";
-                                                carrinhoCompras[i + 1] = nullptr;
-                                                Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
-                                                confirmStock = false;
-                                                cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
-                                                system("pause");
+                                    cin >> tempID;
+                                    for (int i = 0; i < getsize(Products); i++){
+                                        if(tempID == Products[i][0]){
+                                            if(stoi(Products[i][4]) > 0){
+                                                int lastPos = getsize(carrinhoCompras);
+                                                delete[] carrinhoCompras[lastPos];
+                                                carrinhoCompras[lastPos] = new string[13];
+
+                                                carrinhoCompras[lastPos][3] = Products[i][1];
+                                                cout << "Insira a quantidade que deseja: ";
+                                                while(availableStock){
+                                                    cin >> tempStock;
+                                                        if(stoi(tempStock) <= stoi(Products[i][4])){
+                                                            carrinhoCompras[lastPos][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
+                                                            carrinhoCompras[lastPos][1] = SESSION[0][0];
+                                                            carrinhoCompras[lastPos][2] = to_string(lastPos + 1);
+                                                            carrinhoCompras[lastPos][4] = tempStock;
+                                                            carrinhoCompras[lastPos][5] = Products[i][2];
+                                                            carrinhoCompras[lastPos][6] = "24%";
+                                                            carrinhoCompras[lastPos][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
+                                                            carrinhoCompras[lastPos][8] = "0";
+                                                            carrinhoCompras[lastPos][10] = "0";
+                                                            carrinhoCompras[lastPos][12] = "\n";
+                                                            carrinhoCompras[lastPos + 1] = nullptr;
+                                                            //remover ao stock do produto
+                                                            Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
+                                                            cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
+                                                            system("pause");
+                                                            availableStock = false;
+                                                            confirmStock = false;
+                                                        }
+                                                        else if(stoi(tempStock) > stoi(Products[i][4])){
+                                                            cout << "Quantidade em stock insuficiente! Stock disponível: " << Products[i][4] << ". Por favor volte a inserir a quantidade desejada: ";
+                                                        }
+                                                    
+                                                }
                                             }
-                                            
-                                        }
-                                        else if(stoi(Products[i][4]) <= 0){
+                                            else if(stoi(Products[i][4]) <= 0){
                                             cout << "Quantidade em stock insuficiente!";
                                             system("pause");
                                             confirmStock = false;
+                                            }
                                         }
-
+                        
                                     }
 
                                 }
@@ -186,25 +229,12 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                     }
 
 
+                
+                
                 system("cls");
                 cout << "Carrinho: " << endl;
-                tableProducts(Products);
-                /*for(int y = 0; y < getsize(carrinhoCompras); y++){
-                    for(int x = 0; x < getsize(carrinhoCompras[y]); x++){
-                        cout << carrinhoCompras[y][x] << " ";
-                    }
-                    cout << endl;
-                }*/
+                tableRelatorios(carrinhoCompras);
                 system("pause");
-
-
-                
-
-
-
-
-
-
 
                 system("cls");
                 cout << "Deseja prosseguir?[y/n]";
@@ -216,12 +246,9 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                                 total += stod(carrinhoCompras[y][7]);
                             }
                             for(int y = 0; y < getsize(carrinhoCompras); y++){
-                                for(int x = 0; x < getsize(carrinhoCompras[y]); x++){
-                                    carrinhoCompras[y][8] = total;
-                                    carrinhoCompras[y][9] = currentTime;
-                                }
+                                carrinhoCompras[y][8] = to_string(total);
+                                carrinhoCompras[y][11] = to_string(gottime -> tm_mday) + "/" + to_string(gottime -> tm_mon) + "/" + to_string(gottime -> tm_year) + "   " + to_string(gottime -> tm_hour) + ":" + to_string(gottime -> tm_min) + ":" + to_string(gottime -> tm_sec);
                             }
-                            cout << "Preço total: " << total << endl;
                             system("pause");
                             checkout = false;
                         break;
@@ -230,7 +257,10 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                             for(int y = 0; y < getsize(carrinhoCompras); y++){
                                 total += stod(carrinhoCompras[y][7]);
                             }
-                            cout << "Preço total: " << total << endl;
+                            for(int y = 0; y < getsize(carrinhoCompras); y++){
+                                carrinhoCompras[y][8] = to_string(total);
+                                carrinhoCompras[y][11] = to_string(gottime -> tm_mday) + "/" + to_string(gottime -> tm_mon) + "/" + to_string(gottime -> tm_year) + "   " + to_string(gottime -> tm_hour) + ":" + to_string(gottime -> tm_min) + ":" + to_string(gottime -> tm_sec);
+                            }
                             system("pause");
                             checkout = false;
                         break;
@@ -249,37 +279,38 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                 //imprimir talão
                 system("cls");
                 cout << "Receipt:" << endl << endl;
-
-                for(int y = 0; y < getsize(carrinhoCompras); y++){
-                    for(int x = 0; x < getsize(carrinhoCompras[y]); x++){
-                        cout << carrinhoCompras[y][x] << " ";
-                    }
-                    cout << endl;
-                }
+                tableRelatorios(carrinhoCompras);
+                system("pause");
                 cout << "\n\nTotal a pagar: " << total << endl << endl;
                 cout << "Insira o valor a pagar: ";
-                cin >> valorEntregue;
 
                 while(payment){
+                    cin >> valorEntregue;
                     if(valorEntregue > total){
                         troco = valorEntregue - total;
                         cout << "Troco: " << troco << endl;
                         cout << "Obrigado pela sua compra! Volte sempre!" << endl;
                         system("pause");
-                        exit(0);
+                        payment = false;
+                        for(int y = 0; y < getsize(carrinhoCompras); y++){
+                            growArray(Bills, carrinhoCompras[y]);
+                        }
+                        
                     }
                     else if(valorEntregue < total){
                         system("cls");
                         cout << "Valor insuficiente!" << endl;
                         system("pause");
-                        exit(0);
                     }
                     else if(valorEntregue = total){
                         troco = 0;
                         cout << "Troco: " << troco << endl;
                         cout << "Obrigado pela sua compra! Volte sempre!" << endl;
+                        for(int y = 0; y < getsize(carrinhoCompras); y++){
+                            growArray(Bills, carrinhoCompras[y]);
+                        }
                         system("pause");
-                        exit(0);
+                        payment = false;
                     }
                 }
                     
@@ -358,47 +389,70 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
 
             case 'Y':
                 system("cls");
-                cout << "Insira o ID do produto: ";
-                cin >> tempID;
-                for (int i = 0; i < getsize(Products); i++){
-                    while(confirmStock){
-                        if(tempID == Products[i][0] && stoi(Products[i][4]) > 0){
-                            delete[] carrinhoCompras[i];
-                            carrinhoCompras[i] = new string[13];
-                            carrinhoCompras[i][3] = Products[i][1];
-                            cout << "Insira a quantidade que deseja: ";
-                            cin >> tempStock;
-                            if(stoi(tempStock) <= stoi(Products[i][4])){
-                                carrinhoCompras[i][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
-                                carrinhoCompras[i][1] = SESSION[0][0];
-                                carrinhoCompras[i][2] = to_string(getsize(carrinhoCompras) + 1);
-                                carrinhoCompras[i][4] = tempStock;
-                                carrinhoCompras[i][5] = Products[i][2];
-                                carrinhoCompras[i][6] = "24%";
-                                carrinhoCompras[i][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
-                                carrinhoCompras[i][8] = "0";
-                                carrinhoCompras[i][9] = "0";
-                                carrinhoCompras[i][11] = "\n";
-                                carrinhoCompras[i + 1] = nullptr;
-                                //remover ao stock do produto
-                                Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
-                                confirmStock = false;
+                while(confirmStock){
+                    confirmStock = true;
+                    cout << "Insira o ID do produto: ";
+
+                    cin >> tempID;
+                    for (int i = 0; i < getsize(Products); i++){
+                        if(tempID == Products[i][0]){
+                            if(stoi(Products[i][4]) > 0){
+                                int lastPos = getsize(carrinhoCompras);
+                                delete[] carrinhoCompras[lastPos];
+                                carrinhoCompras[lastPos] = new string[13];
+
+                                carrinhoCompras[lastPos][3] = Products[i][1];
+                                cout << "Insira a quantidade que deseja: ";
+                                while(availableStock){
+                                    cin >> tempStock;
+                                        int j = 0;
+                                        if(stoi(tempStock) <= stoi(Products[i][4])){
+                                            //preencher carrinhoCompras
+                                            carrinhoCompras[lastPos][1] = SESSION[0][0];
+                                            carrinhoCompras[lastPos][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
+                                            carrinhoCompras[lastPos][2] = to_string(lastPos + 1);
+                                            carrinhoCompras[lastPos][4] = tempStock;
+                                            carrinhoCompras[lastPos][5] = Products[i][2];
+                                            carrinhoCompras[lastPos][6] = "24%";
+                                            carrinhoCompras[lastPos][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
+                                            carrinhoCompras[lastPos][8] = "0";
+                                            carrinhoCompras[lastPos][9] = "0";
+                                            carrinhoCompras[lastPos][10] = "0";
+                                            carrinhoCompras[lastPos][12] = "\n";
+                                            carrinhoCompras[lastPos + 1] = nullptr;
+
+                                            //remover ao stock do produto
+                                            Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
+
+                                            cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
+                                            system("pause");
+                                            confirmStock = false;
+                                            availableStock = false;
+                                        }
+                                        else if(stoi(tempStock) > stoi(Products[i][4])){
+                                            cout << "Quantidade em stock insuficiente! Stock disponível: " << Products[i][4] << ". Por favor volte a inserir a quantidade desejada: ";
+                                        }
+                                    
+                                    
+                                }
+                                
                             }
-                        }
-                        else if(stoi(Products[i][4]) <= 0){
-                            cout << "Quantidade em stock insuficiente!";
+                            else if(stoi(Products[i][4]) <= 0){
+                            cout << "De momento não temos stock suficiente. Por favor tente mais tarde.";
                             system("pause");
                             confirmStock = false;
+                            }
                         }
-                        cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
-                        system("pause");
-
+                        
                     }
                     
+
                 }
+                    
 
                     while(productBuy){
                         confirmStock = true;
+                        availableStock = true;
                         system("cls");
                         cout << "Deseja inserir mais algum produto?[y/n] ";
                         cin >> insert;
@@ -408,41 +462,52 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                             case 'y':
                                 system("cls");
                                 cout << "Insira o ID do produto: ";
-                                cin >> tempID;
                                 while(confirmStock){
-                                    for (int i = 1; i < getsize(Products); i++){
-                                        if(tempID == Products[i][0] && stoi(Products[i][4]) > 0){
+                                    cin >> tempID;
+                                    for (int i = 0; i < getsize(Products); i++){
+                                        if(tempID == Products[i][0]){
+                                            if(stoi(Products[i][4]) > 0){
+                                                int lastPos = getsize(carrinhoCompras);
+                                                delete[] carrinhoCompras[lastPos];
+                                                carrinhoCompras[lastPos] = new string[13];
 
-                                            delete[] carrinhoCompras[i];
-                                            carrinhoCompras[i] = new string[13];
-                                            carrinhoCompras[i][3] = Products[i][1];
-                                            cout << "Insira a quantidade que deseja: ";
-                                            cin >> tempStock;
-                                            if(stoi(tempStock) <= stoi(Products[i][4])){
-                                                carrinhoCompras[i][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
-                                                carrinhoCompras[i][1] = SESSION[0][0];
-                                                carrinhoCompras[i][2] = to_string(getsize(carrinhoCompras) + 1);
-                                                carrinhoCompras[i][4] = tempStock;
-                                                carrinhoCompras[i][5] = Products[i][2];
-                                                carrinhoCompras[i][6] = "24%";
-                                                carrinhoCompras[i][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
-                                                carrinhoCompras[i][8] = "0";
-                                                carrinhoCompras[i][9] = "0";
-                                                carrinhoCompras[i][11] = "\n";
-                                                carrinhoCompras[i + 1] = nullptr;
-                                                Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
-                                                confirmStock = false;
-                                                cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
-                                                system("pause");
+                                                carrinhoCompras[lastPos][3] = Products[i][1];
+                                                cout << "Insira a quantidade que deseja: ";
+                                                while(availableStock){
+                                                    cin >> tempStock;
+                                                        if(stoi(tempStock) <= stoi(Products[i][4])){
+                                                            carrinhoCompras[lastPos][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
+                                                            carrinhoCompras[lastPos][1] = SESSION[0][0];
+                                                            carrinhoCompras[lastPos][2] = to_string(lastPos + 1);
+                                                            carrinhoCompras[lastPos][4] = tempStock;
+                                                            carrinhoCompras[lastPos][5] = Products[i][2];
+                                                            carrinhoCompras[lastPos][6] = "24%";
+                                                            carrinhoCompras[lastPos][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
+                                                            carrinhoCompras[lastPos][8] = "0";
+                                                            carrinhoCompras[lastPos][9] = "0";
+                                                            carrinhoCompras[lastPos][10] = "0";
+                                                            carrinhoCompras[lastPos][12] = "\n";
+                                                            carrinhoCompras[lastPos + 1] = nullptr;
+                                                            //remover ao stock do produto
+                                                            Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
+                                                            cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
+                                                            system("pause");
+                                                            availableStock = false;
+                                                            confirmStock = false;
+                                                        }
+                                                        else if(stoi(tempStock) > stoi(Products[i][4])){
+                                                            cout << "Quantidade em stock insuficiente! Stock disponível: " << Products[i][4] << ". Por favor volte a inserir a quantidade desejada: ";
+                                                        }
+                                                    
+                                                }
                                             }
-                                            
-                                        }
-                                        else if(stoi(Products[i][4]) <= 0){
+                                            else if(stoi(Products[i][4]) <= 0){
                                             cout << "Quantidade em stock insuficiente!";
                                             system("pause");
                                             confirmStock = false;
+                                            }
                                         }
-
+                        
                                     }
 
                                 }
@@ -451,42 +516,51 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                             case 'Y':
                                 system("cls");
                                 cout << "Insira o ID do produto: ";
-                                cin >> tempID;
                                 while(confirmStock){
-                                    for (int i = 1; i < getsize(Products); i++){
-                                        if(tempID == Products[i][0] && stoi(Products[i][4]) > 0){
-                                            delete[] carrinhoCompras[i];
-                                            carrinhoCompras[i] = new string[13];
-                                            carrinhoCompras[i][3] = Products[i][1];
-                                            cout << "Insira a quantidade que deseja: ";
-                                            cin >> tempStock;
-                                            if(stoi(tempStock) <= stoi(Products[i][4])){
-                                                carrinhoCompras[i][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
-                                                carrinhoCompras[i][1] = SESSION[0][0];
-                                                cout << "ultimo carrinho [2]: " << getsize(carrinhoCompras) + 1;
-                                                system("pause");
-                                                carrinhoCompras[i][2] = to_string(getsize(carrinhoCompras) + 1);
-                                                carrinhoCompras[i][4] = tempStock;
-                                                carrinhoCompras[i][5] = Products[i][2];
-                                                carrinhoCompras[i][6] = "24%";
-                                                carrinhoCompras[i][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
-                                                carrinhoCompras[i][8] = "0";
-                                                carrinhoCompras[i][9] = "0";
-                                                carrinhoCompras[i][11] = "\n";
-                                                carrinhoCompras[i + 1] = nullptr;
-                                                Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
-                                                confirmStock = false;
-                                                cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
-                                                system("pause");
+                                    cin >> tempID;
+                                    for (int i = 0; i < getsize(Products); i++){
+                                        if(tempID == Products[i][0]){
+                                            if(stoi(Products[i][4]) > 0){
+                                                int lastPos = getsize(carrinhoCompras);
+                                                delete[] carrinhoCompras[lastPos];
+                                                carrinhoCompras[lastPos] = new string[13];
+
+                                                carrinhoCompras[lastPos][3] = Products[i][1];
+                                                cout << "Insira a quantidade que deseja: ";
+                                                while(availableStock){
+                                                    cin >> tempStock;
+                                                        if(stoi(tempStock) <= stoi(Products[i][4])){
+                                                            carrinhoCompras[lastPos][0] = to_string(stoi(Bills[getsize(Bills) - 1][0]) + 1);
+                                                            carrinhoCompras[lastPos][1] = SESSION[0][0];
+                                                            carrinhoCompras[lastPos][2] = to_string(lastPos + 1);
+                                                            carrinhoCompras[lastPos][4] = tempStock;
+                                                            carrinhoCompras[lastPos][5] = Products[i][2];
+                                                            carrinhoCompras[lastPos][6] = "24%";
+                                                            carrinhoCompras[lastPos][7] = to_string(stoi(Products[i][2]) * 1.24 * stoi(tempStock));
+                                                            carrinhoCompras[lastPos][8] = "0";
+                                                            carrinhoCompras[lastPos][10] = "0";
+                                                            carrinhoCompras[lastPos][12] = "\n";
+                                                            carrinhoCompras[lastPos + 1] = nullptr;
+                                                            //remover ao stock do produto
+                                                            Products[i][4] = to_string(stoi(Products[i][4]) - stoi(tempStock));
+                                                            cout << "Produto " << tempID << " adicionado com sucesso! (" << tempStock << " unidades)" << endl;
+                                                            system("pause");
+                                                            availableStock = false;
+                                                            confirmStock = false;
+                                                        }
+                                                        else if(stoi(tempStock) > stoi(Products[i][4])){
+                                                            cout << "Quantidade em stock insuficiente! Stock disponível: " << Products[i][4] << ". Por favor volte a inserir a quantidade desejada: ";
+                                                        }
+                                                    
+                                                }
                                             }
-                                            
-                                        }
-                                        else if(stoi(Products[i][4]) <= 0){
+                                            else if(stoi(Products[i][4]) <= 0){
                                             cout << "Quantidade em stock insuficiente!";
                                             system("pause");
                                             confirmStock = false;
+                                            }
                                         }
-
+                        
                                     }
 
                                 }
@@ -503,24 +577,12 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                     }
 
 
+                
+                
                 system("cls");
                 cout << "Carrinho: " << endl;
-                for(int y = 0; y < getsize(carrinhoCompras); y++){
-                    for(int x = 0; x < getsize(carrinhoCompras[y]); x++){
-                        cout << carrinhoCompras[y][x] << " ";
-                    }
-                    cout << endl;
-                }
+                tableRelatorios(carrinhoCompras);
                 system("pause");
-
-
-                
-
-
-
-
-
-
 
                 system("cls");
                 cout << "Deseja prosseguir?[y/n]";
@@ -532,12 +594,9 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                                 total += stod(carrinhoCompras[y][7]);
                             }
                             for(int y = 0; y < getsize(carrinhoCompras); y++){
-                                for(int x = 0; x < getsize(carrinhoCompras[y]); x++){
-                                    carrinhoCompras[y][8] = total;
-                                    carrinhoCompras[y][9] = total;
-                                }
+                                carrinhoCompras[y][8] = to_string(total);
+                                carrinhoCompras[y][11] = to_string(gottime -> tm_mday) + "/" + to_string(gottime -> tm_mon) + "/" + to_string(gottime -> tm_year) + "   " + to_string(gottime -> tm_hour) + ":" + to_string(gottime -> tm_min) + ":" + to_string(gottime -> tm_sec);
                             }
-                            cout << "Preço total: " << total << endl;
                             system("pause");
                             checkout = false;
                         break;
@@ -546,7 +605,10 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                             for(int y = 0; y < getsize(carrinhoCompras); y++){
                                 total += stod(carrinhoCompras[y][7]);
                             }
-                            cout << "Preço total: " << total << endl;
+                            for(int y = 0; y < getsize(carrinhoCompras); y++){
+                                carrinhoCompras[y][8] = to_string(total);
+                                carrinhoCompras[y][11] = to_string(gottime -> tm_mday) + "/" + to_string(gottime -> tm_mon) + "/" + to_string(gottime -> tm_year) + "   " + to_string(gottime -> tm_hour) + ":" + to_string(gottime -> tm_min) + ":" + to_string(gottime -> tm_sec);
+                            }
                             system("pause");
                             checkout = false;
                         break;
@@ -565,37 +627,37 @@ void vendaProdutos(string** Products, string** SESSION, string** Bills){
                 //imprimir talão
                 system("cls");
                 cout << "Receipt:" << endl << endl;
-
-                for(int y = 0; y < getsize(carrinhoCompras); y++){
-                    for(int x = 0; x < getsize(carrinhoCompras[y]); x++){
-                        cout << carrinhoCompras[y][x] << " ";
-                    }
-                    cout << endl;
-                }
+                tableRelatorios(carrinhoCompras);
+                system("pause");
                 cout << "\n\nTotal a pagar: " << total << endl << endl;
                 cout << "Insira o valor a pagar: ";
-                cin >> valorEntregue;
 
                 while(payment){
+                    cin >> valorEntregue;
                     if(valorEntregue > total){
                         troco = valorEntregue - total;
                         cout << "Troco: " << troco << endl;
                         cout << "Obrigado pela sua compra! Volte sempre!" << endl;
                         system("pause");
-                        exit(0);
+                        payment = false;
+                        for(int y = 0; y < getsize(carrinhoCompras); y++){
+                            growArray(Bills, carrinhoCompras[y]);
+                        }
+                        
                     }
                     else if(valorEntregue < total){
-                        system("cls");
                         cout << "Valor insuficiente!" << endl;
                         system("pause");
-                        exit(0);
                     }
                     else if(valorEntregue = total){
                         troco = 0;
                         cout << "Troco: " << troco << endl;
                         cout << "Obrigado pela sua compra! Volte sempre!" << endl;
+                        for(int y = 0; y < getsize(carrinhoCompras); y++){
+                            growArray(Bills, carrinhoCompras[y]);
+                        }
                         system("pause");
-                        exit(0);
+                        payment = false;
                     }
                 }
             break;
@@ -641,40 +703,3 @@ void showProducts(string** Products, string** SESSION){
 
 
 
-#ifndef tableReceipt_file
-#define tableReceipt_file
-void tableReceipt(string** Products){
-    cout << "." << setfill('_') << setw(getsizestring(list_products, 0, "Id") +
-                                getsizestring(list_products, 1, "Nome") + 
-                                getsizestring(list_products, 2, "Preço de custo") + 
-                                getsizestring(list_products, 2, "Preço Venda") +
-                                getsizestring(list_products, 2, "Quantidade") + 15
-            )
-            << "." << endl << setfill(' ');
-            cout << "| " << setw(getsizestring(list_products, 0, "Id")) << "Id" << " | "
-                << setw(getsizestring(list_products, 1, "Nome")) << left << "Nome" << " | "
-                << setw(getsizestring(list_products, 2, "Preço de custo"))  << right << "Preço de custo" << " | "
-                << setw(getsizestring(list_products, 2, "Preço Venda")) << "Preço Venda" << " | "
-                << setw(getsizestring(list_products, 2, "Quantidade")) << "Quantidade" << " |" << endl;
-
-
-            for (int i = 0; i < getsize(list_products); i++) {
-
-                
-                cout << "| " << setw(getsizestring(list_products, 0, "Id")) << list_products[i][0] << " | " 
-                    << setw(getsizestring(list_products, 1, "Nome")) << left << list_products[i][1] << " | "
-                    << setw(getsizestring(list_products, 2, "Preço de custo")) << right << list_products[i][2] << " | "
-                    << setw(getsizestring(list_products, 3, "Preço Venda")) << list_products[i][3] << " | " 
-                    << setw(getsizestring(list_products, 4, "Quantidade")) << list_products[i][4] << " |" << endl;
-            }
-
-            cout << "'" << setfill('-') << setw(getsizestring(list_products, 0, "Id") +
-                                getsizestring(list_products, 1, "Nome") + 
-                                getsizestring(list_products, 2, "Preço de custo") + 
-                                getsizestring(list_products, 2, "Preço Venda") +
-                                getsizestring(list_products, 2, "Quantidade") + 15
-            )
-            << "'" << endl << setfill(' ');
-
-}
-#endif

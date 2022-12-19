@@ -38,23 +38,19 @@
             if(getsize(Matrix) < 101){
                 int lastPos = getsize(Matrix);
 
-                
-
                 delete[] Matrix[lastPos];
 
                 Matrix[lastPos] = new string [getsize(Value) + 1];
-
                 for (int i = 0; i < getsize(Value) + 1; i++)
                 {
 
                     Matrix[lastPos][i] = Value[i];
                     
-                    Matrix[lastPos][getsize(Value)] = "\n";
-                    
                 }
                 Matrix[lastPos + 1] = nullptr;
             } else {
                 string maiorid = "0";
+
                 for (int i = 0; i < getsize(Matrix); i++)
                 {
                     if(Matrix[i][0] > maiorid) {

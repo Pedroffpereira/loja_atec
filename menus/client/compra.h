@@ -7,6 +7,7 @@ using namespace std;
 #include "../../data/data.cpp"
 #include "../../control_array/array_function.cpp"
 #include "../../config/ProductsFunctions.cpp"
+#include "../../config/RelatoriosFunctions.cpp"
 
 
 void showProducts(string** Products, string** SESSION);
