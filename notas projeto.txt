@@ -1,18 +1,14 @@
 TODO list:
--adicionar checkout no carrinho;
--adicionar verificação para quando stock for <= 0 ao adicionar ao carrinho;
--se adicionar produtos 101, 102 dá mas se adicionar 102, 101 só guarda a partir do 101;
+-carrinho só guarda produtos se o id for posto por ordem crescente. se puser id 4 primeiro e depois id 1 só guarda id 1;
+-ao inserir id 4 como primeiro produto a adicionar ao carrinho aparece system("pause") 3 ou 4 vezes
+-random (<15%) , se sim total=zero
 
 
 
 bernardo.teixeira@gmail.com
 
-vendas, data do talão
-
-apresentar tabela produtos
 
 
-random (<15%) , se sim venda equals zero
 
 git add .
 git commit -m "alterações"

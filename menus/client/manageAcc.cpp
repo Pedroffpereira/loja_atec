@@ -9,12 +9,13 @@
 #ifndef menu_manage_client_file
 #define menu_manage_client_file
 void menu_manage_client(string*** GLOBAL,string** SESSION){
-
-    system("cls");
     
     int action;
 
     do{
+    bool confirmAction = true;
+
+    system("cls");
 
     cout << "1 - Info pessoal" << endl;
 
@@ -24,41 +25,43 @@ void menu_manage_client(string*** GLOBAL,string** SESSION){
 
     cout << "4 - Estado da conta" << endl;
 
-    cout << "9 - Retroceder" << endl;
-
-    cout << "0 - Sair" << endl;
+    cout << "0 - Retroceder" << endl;
 
 
 
-    cin >> action;
 
-    switch (action){
-        case 1:
-            showClientInfo(GLOBAL, SESSION);
-            system("pause");
-            menu_manage_client(GLOBAL, SESSION);
-        break;
+    while(confirmAction){
+        cin >> action;
+        switch (action){
+            case 1:
+                showClientInfo(GLOBAL, SESSION);
+                system("pause");
+                confirmAction = false;
+            break;
 
-        case 2:
-            changeClientAcc(GLOBAL, SESSION);
-            system("pause");
-            menu_manage_client(GLOBAL, SESSION);
-        break;
+            case 2:
+                changeClientAcc(GLOBAL, SESSION);
+                system("pause");
+                confirmAction = false;
+            break;
 
-        case 3:
-            //deleteAcc();
-        break;
+            case 3:
+                deleteItem(SESSION, SESSION[0][0]);
+            break;
 
-        case 4:
-            system("cls");
-            cout << SESSION[0][3];
-            system("pause");
-            menu_manage_client(GLOBAL, SESSION);
-        break;
+            case 4:
+                system("cls");
+                cout << SESSION[0][3] << endl;
+                system("pause");
+                confirmAction = false;
+            break;
 
-        
-
+            case 0:
+                confirmAction = false;
+            break;
+        }
     }
+    
 
 
 
@@ -115,6 +118,7 @@ void changeClientAcc(string*** GLOBAL,string** SESSION){
     cin >> infoChangeConf;
     switch(infoChangeConf){
     case 'y':
+        system("cls");
         cout << "Novo nome: " << endl;
         cin >> SESSION[0][5];
         system("cls");
