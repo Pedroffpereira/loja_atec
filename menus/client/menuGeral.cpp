@@ -11,46 +11,40 @@ void menu_client(string*** GLOBAL,string** SESSION){
 
 
     do{
-    bool confirmAction = true;
+        bool confirmAction = true;
 
-    system("cls");
+        system("cls");
 
-    cout << "1 - Produtos" << endl;
+        cout << "1 - Produtos" << endl;
 
-    cout << "2 - Gerir conta" << endl;
+        cout << "2 - Gerir conta" << endl;
 
-    cout << "0 - Sair" << endl;
+        cout << "0 - Sair" << endl;
 
 
 
-    
-    while(confirmAction){
-        cin >> action;
+        
+        while(confirmAction){
+            cin >> action;
 
-        switch (action){
-            case 1:
-                vendaProdutos(GLOBAL[1], SESSION, GLOBAL[2]);
-                confirmAction = false;
-            break;
+            switch (action){
+                case 1:
+                    vendaProdutos(GLOBAL[1], SESSION, GLOBAL[2]);
+                    confirmAction = false;
+                break;
 
-            case 2:
-                menu_manage_client(GLOBAL, SESSION);
-                system("pause");
-                confirmAction = false;
-            break;
+                case 2:
+                    menu_manage_client(GLOBAL, SESSION, &action);
+                    system("pause");
+                    confirmAction = false;
+                break;
 
-            case 0:
-                confirmAction = false;
-            break;
+                case 0:
+                    confirmAction = false;
+                break;
 
+            }
         }
-    }
-    
-
-
-
-
-
     }
     while(action != 0);
 

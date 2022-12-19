@@ -8,7 +8,7 @@
 
 #ifndef menu_manage_client_file
 #define menu_manage_client_file
-void menu_manage_client(string*** GLOBAL,string** SESSION){
+void menu_manage_client(string*** GLOBAL,string** SESSION, int* actionptr = nullptr){
     
     int action;
 
@@ -47,6 +47,9 @@ void menu_manage_client(string*** GLOBAL,string** SESSION){
 
             case 3:
                 deleteItem(SESSION, SESSION[0][0]);
+                confirmAction = false;
+                action = 0;
+                *actionptr = 0;
             break;
 
             case 4:
