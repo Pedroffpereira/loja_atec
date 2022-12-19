@@ -302,7 +302,7 @@ void loadBills(string** Bills) {
 
     Bills[4] = new string[13];
 
-    Bills[4][0] = "4";
+    Bills[4][0] = "5";
 
     Bills[4][1] = "1";
 
